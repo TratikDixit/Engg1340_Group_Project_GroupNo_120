@@ -1,10 +1,4 @@
-/******************************************************************************
 
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
 
 #include <iostream>
 
@@ -12,7 +6,7 @@ using namespace std;
 
 int main()
 {
- string a1 = "Welcome to Dugeon Crawler\n"   
+ string intro = "Welcome to Dugeon Crawler\n"   
 "                                                 ,--,  ,.-.  \n"
 "               ,                    |,       '-,-`,'-.' | ._ \n"
 "              /|         \\    ,   |\\         }  )/  / `-,',\n"
@@ -37,5 +31,19 @@ int main()
 "(_\\|`   _,/_  /  \\            ,--`                         \n"
 "\\( `   <.,../`    `-.._   _,-`                              \n";
 
-    cout<<a1;
+   
+ string background = "\n";
+  
+ string Menu_Drop = "1. Start New Game \n" 
+ "2. Achievements \n"  
+ "3. Quit \n"
+  "Enter your choice? "  ;
+ 
+  int choice;
+  
+  cout<<intro<<"\n"<<background<<"\n"Menu_Drop;
+  cin>>choice;
+  
+  
+  
 }
