@@ -1,7 +1,7 @@
 
 
 #include <iostream>
-
+#include"achievement.h"
 using namespace std;
 
 int main()
@@ -44,15 +44,10 @@ int main()
   cout<<intro<<"\n"<<background<<"\n"<<Menu_Drop;
   cin>>choice;
   
- while(choice!=3)
- {
-    cout<<"Invalid! Choose again";
-    cin>>choice;
     if(choice==1)
-         // call the game file
-     else
-          //call the achievement file
- }
+           // sync the main game file        
+    else if(choice==2)
+        print_file();  
   
  cout<<"Thanks for playing";
 }
