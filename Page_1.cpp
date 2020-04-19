@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include"achievement.h"
+#include "Game_Control.h"
+
 using namespace std;
 
 int main()
@@ -45,7 +47,7 @@ int main()
   cin>>choice;
   
     if(choice==1)
-           // sync the main game file        
+               Play();           
     else if(choice==2)
         print_file();  
   
