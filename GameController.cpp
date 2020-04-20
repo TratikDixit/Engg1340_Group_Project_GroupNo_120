@@ -2,19 +2,21 @@
 #include <fstream> 
 #include<vector>
 #include <cstdio>
+#include <stdlib.h>
 #include "game.h"
 #include "player_info.h"
 
 using namespace std;
 
-class GameController {
+class MapController {
    vector<string> grid;
    public: 
    void Load_Map(string);
-   void Display_Map(); 
+   void Display_Map(Player); 
+   void Update_Map(Player&); 
 };
 
-void GameController::Load_Map(string level_id) {
+void MapController::Load_Map(string level_id) {
    // 
    // - Loads the 2d array of the maze
    //
@@ -28,63 +30,55 @@ void GameController::Load_Map(string level_id) {
    grid = Maze;
 }
 
-void GameController::Display_Map() {
+void MapController::Display_Map(Player player) {
    //
    // - Displays the map of the current level
    //
 
+   // Get the position of the player 
+
+   // Clear the previous output screen
+   system("cls");
+
+   vector<int> playerPosition = player.GetPosition();
 
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
    } else {
       for (int i = 0; i < grid.size(); i++) {
-         printf("%s\n", grid[i].c_str());
+         for (int j  = 0; j < grid[i].size(); j++) {  
+            if (i == playerPosition[0] && j == playerPosition[1]) {
+               cout<<'@';
+            } else {
+               cout<<grid[i][j];
+            }
+         }
+         cout<<endl;
       }
    }
   
 }
 
-void GameController::Update_Map(Player player, char move) {
-   //
-   // - Updates the position of the player in the map
-   // - based on the move played  
-   // 
+void MapController::Update_Map(Player& player) {
+   // Move the player 
+   player.MovePlayer();
 
-   int prevPosition = player.GetPosition();
-
-   if (move == 'w') {
-      // Move up
-      player.UpdatePosition(0, -1);
-   } else if (move == 's') {
-      // Move down
-      player.UpdatePosition(0, 1);
-   } else if (move == 'a') {
-      // Move left
-      player.UpdatePosition(-1, 0);
-   } else {
-      // Move right
-      player.UpdatePosition(1, 0);
-   }
-
-
-
+   // Display the updated map 
+   Display_Map(player);
 
 }
 
-
 int main() {
 
-   GameController controller;
+   MapController controller;
    controller.Load_Map("");
-
-   // Print the maze 
-   controller.Display_Map();
 
    // Create a new player 
    Player player;
+
+   bool game_over = false; 
    
-   for (int i = 0; i < 4; i++) {
-      Input(); 
-      controller.Update_Map(player, move); 
-   }
+   while (!game_over) {
+      controller.Update_Map(player);
+   }   
 }

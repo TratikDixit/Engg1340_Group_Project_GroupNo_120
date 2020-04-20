@@ -30,34 +30,72 @@ class Player {
     string GetPlayerName(); 
 
     // Returns the position of the player
-    Position GetPosition();
+    vector<int> GetPosition();
 
-    // Update the position of a player by a specific amount
-    void UpdatePosition(int, int);
+    // Update the position of a player
+    void UpdatePosition(char);
+
+    // Allows the player to move in the map 
+    void MovePlayer();
 };
 
 
    
 
    
-   void Player::store_player_name(){
-       cout<<"\nEnter the player name : ";
-       cin>> name;
-   }
+void Player::store_player_name(){
+    cout<<"\nEnter the player name : ";
+    cin>> name;
+}
 
-   string Player::GetPlayerName() {
-       return name; 
-   }
+string Player::GetPlayerName() {
+    return name; 
+}
 
-   Position Player::GetPosition() {
-       return position;
-   }
+vector<int> Player::GetPosition() {
+    vector<int> pos; 
+
+    pos.push_back(P.x);
+    pos.push_back(P.y);
+
+    return pos;
+}
    
-   void Player::UpdatePosition(int dx, int dy) {
-       P.x += dx; 
-       P.y += dy;
-   }
+void Player::UpdatePosition(char move) {
 
+    int dx = 0, dy = 0;
+    if (move == 'w') {
+        // Move up
+        dx = -1;
+        dy = 0;
+    } else if (move == 's') {
+        // Move down
+        dx = 1;
+        dy = 0;
+    } else if (move == 'a') {
+        // Move left
+        dx = 0;
+        dy = -1;
+    } else {
+        cout<<"Go right!";
+        // Move right
+        dx = 0;
+        dy = 1;
+    }
+
+    // Update the position of the player
+    P.x += dx;
+    P.y += dy;
+
+    cout<<P.x<<":"<<P.y<<endl;
+}
+
+void Player::MovePlayer() {
+    // Get the keyboard input from the player
+    char move = Input(); 
+    // Update the position of the player      
+    UpdatePosition(move); 
+}
    
    
 

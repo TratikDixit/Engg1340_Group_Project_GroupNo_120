@@ -1,9 +1,9 @@
-
 #include <iostream>
-#include "bits/stdc++.h" 
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
+
 
 struct Pointer{
     int x;           // stores x and y co-ordinates
@@ -16,17 +16,18 @@ struct Pointer{
    void Load_Maze()
    {
     fstream file;
-    string filename = "/data/levels/level_1.txt";                      //I have only written it for 1 level rn Ill add more as they come
+    string filename = "./data/levels/level1.txt";                      //I have only written it for 1 level rn Ill add more as they come
     file.open(filename.c_str());
     string line="";
     if (file.is_open())
     while(getline(file, line)){
         Maze.push_back(line); 
     }
-    
+
     file.close();
      
    }
+
    bool isValid(char move)
    {
        string w= "ewud";
@@ -46,19 +47,27 @@ struct Pointer{
        return false;
    }
    
-   void Input()
+   char Input()
    {
               bool check = true;
               while(check){    
-              char move;
-              cin>>move;
-              if(isValid(move))
+              char m;
+              cin>>m;
+              if(isValid(m))
                check= false;
+               return m;
                }
+               return ' ';
+              
    }
    
     void Start_Game()       
    {
+        bool game_over = false; 
+        
+        while (!game_over) {
+            // Display the map here
+        }
                 Input();
    }
 
