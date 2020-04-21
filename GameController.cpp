@@ -3,6 +3,8 @@
 #include<vector>
 #include <cstdio>
 #include <stdlib.h>
+#include <cwchar> 
+#include <windows.h>
 #include "game.h"
 #include "player_info.h"
 
@@ -14,6 +16,8 @@ class MapController {
    void Load_Map(string);
    void Display_Map(Player); 
    void Update_Map(Player&); 
+   void ChangeFont(int);
+
 };
 
 void MapController::Load_Map(string level_id) {
@@ -60,8 +64,10 @@ void MapController::Display_Map(Player player) {
 }
 
 void MapController::Update_Map(Player& player) {
+   // Get the keyboard input from the Character
+    char move = Input(); 
    // Move the player 
-   player.MovePlayer();
+   player.MoveCharacter(move);
 
    // Display the updated map 
    Display_Map(player);
@@ -71,6 +77,7 @@ void MapController::Update_Map(Player& player) {
 int main() {
 
    MapController controller;
+ 
    controller.Load_Map("");
 
    // Create a new player 
@@ -82,3 +89,4 @@ int main() {
       controller.Update_Map(player);
    }   
 }
+
