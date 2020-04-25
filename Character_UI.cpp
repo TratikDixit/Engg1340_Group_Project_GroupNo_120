@@ -15,9 +15,7 @@ Character::Character() {
     P.x = 1;
     P.y = 1; 
 }
-   
-
-   
+     
 void Character::store_name(){
     string name;
     cout<<"\nEnter the Character name : ";
@@ -36,6 +34,11 @@ vector<int> Character::GetPosition() {
 
     return pos;
 }
+
+void Character::SetPosition(int x, int y) {
+    P.x = x; 
+    P.y = y;
+}
    
 void Character::UpdatePosition(char move) {
     int dx = 0, dy = 0;
@@ -52,7 +55,6 @@ void Character::UpdatePosition(char move) {
         dx = 0;
         dy = -1;
     } else {
-        cout<<"Go right!";
         // Move right
         dx = 0;
         dy = 1;
@@ -66,8 +68,12 @@ void Character::UpdatePosition(char move) {
 }
 
 void Character::MoveCharacter(char move) {
+    // Do some checks here for the movement
+
     // Update the position of the Character      
     UpdatePosition(move); 
 }
    
-   
+string Character::GetType() {
+    return type;
+}

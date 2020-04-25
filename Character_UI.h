@@ -14,6 +14,10 @@ struct Position {
 
 class Character {
     Position P; 
+    
+    protected:
+    // These members are protected so that the inherited classes 
+    // can directly access them 
     std::string name; 
     std::string type; // Stores the type of character
     int HP; // Health points
@@ -30,11 +34,17 @@ class Character {
     // Returns the position of the character as a vector
     std::vector<int> GetPosition();
 
-    // Update the position of a player
+    // Sets the starting position of the character
+    void SetPosition(int, int);
+
+    // Update the position of a player 
     void UpdatePosition(char);
 
     // Allows the player to move in the map 
     void MoveCharacter(char);
+
+    // Returns the type of the characterx
+    std::string GetType(); 
 };
 
 #endif
