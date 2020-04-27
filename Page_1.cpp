@@ -1,14 +1,13 @@
-
-
 #include <iostream>
-#include"achievement.h"
-#include "Game_Control.h"
+#include <stdlib.h> 
 
 using namespace std;
 
 int main()
 {
- string intro = "                              Welcome to Dugeon Crawler\n\n"   
+  // Clear the initial screen
+  system("cls");
+ string intro = "\n\n"   
 "                                                 ,--,  ,.-.  \n"
 "               ,                    |,       '-,-`,'-.' | ._ \n"
 "              /|         \\    ,   |\\         }  )/  / `-,',\n"
@@ -34,22 +33,30 @@ int main()
 "\\( `   <.,../`    `-.._   _,-`                              \n";
 
    
- string background = "\n";
+  string background = "\n";
   
- string Menu_Drop = "1. Start New Game \n" 
- "2. Achievements \n"  
- "3. Quit \n"
+  string Menu_Drop = "1. Start New Game \n" 
+  "2. Achievements \n"  
+  "3. Quit \n"
   "Enter your choice? "  ;
  
   int choice;
-  
+  // Print the title 
+   std::cout << R"(
+_______   _______    ___________   _________________ _____  ___  _____ 
+|  ___\ \ / /  ___|  |  _  |  ___| |___  /  _  |  _  \_   _|/ _ \/  __ \
+| |__  \ V /| |__    | | | | |_       / /| | | | | | | | | / /_\ \ /  \/
+|  __|  \ / |  __|   | | | |  _|     / / | | | | | | | | | |  _  | |    
+| |___  | | | |___   \ \_/ / |     ./ /__\ \_/ / |/ / _| |_| | | | \__/\
+\____/  \_/ \____/    \___/\_|     \_____/\___/|___/  \___/\_| |_/\____/)" ;
   cout<<intro<<"\n"<<background<<"\n"<<Menu_Drop;
   cin>>choice;
   
-    if(choice==1)
-               Play();           
-    else if(choice==2)
-        print_file();  
-  
- cout<<"Thanks for playing";
+  // if(choice==1) {
+  //   Play();
+  // } else if(choice==2) {
+  //   print_file();  
+  // }
+ 
+  cout<<"Thanks for playing";
 }

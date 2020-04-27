@@ -13,7 +13,7 @@ Character::Character() {
 
     // Initialize the starting position of the player 
     P.x = 1;
-    P.y = 1; 
+    P.y = 5; 
 }
      
 void Character::store_name(){
@@ -40,7 +40,7 @@ void Character::SetPosition(int x, int y) {
     P.y = y;
 }
    
-void Character::UpdatePosition(char move) {
+void Character::UpdatePosition(char move, vector<string> grid) {
     int dx = 0, dy = 0;
     if (move == 'w') {
         // Move up
@@ -60,20 +60,22 @@ void Character::UpdatePosition(char move) {
         dy = 1;
     }
 
-    // Update the position of the character
-    P.x += dx;
-    P.y += dy;
+    int updated_x = P.x+dx; 
+    int updated_y = P.y+dy;
 
-    cout<<P.x<<":"<<P.y<<endl;
+    // Check for wall collision
+    if (grid[updated_x][updated_y] != '#') {
+        // Check if there is a gate at the new position 
+        
+        if (grid[updated_x][updated_y] == '=') {
+            cout<<"Open the gate (50 Energy)? "<<endl;
+        } else {
+            P.x = updated_x;
+            P.y = updated_y;
+        }      
+    }
 }
 
-void Character::MoveCharacter(char move) {
-    // Do some checks here for the movement
-
-    // Update the position of the Character      
-    UpdatePosition(move); 
-}
-   
 string Character::GetType() {
     return type;
 }

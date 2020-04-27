@@ -52,6 +52,7 @@ struct Pointer{
               bool check = true;
               while(check){    
               char m;
+              cout<<"Move: ";
               cin>>m;
               if(isValid(m))
                check= false;

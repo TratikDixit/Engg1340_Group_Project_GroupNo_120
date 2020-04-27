@@ -13,6 +13,8 @@ class MapController {
    vector<string> grid;
    // Stores the enemies in the current map 
    vector<Enemy> enemies; 
+   // Stores the positions that are free in the map 
+   vector<Position> free_positions; 
    public: 
    void Load_Map(string);
    void LoadEnemies();
@@ -119,7 +121,7 @@ void MapController::Update_Map(Player& player) {
    // Get the keyboard input from the Character
     char move = Input(); 
    // Move the player 
-   player.MoveCharacter(move);
+   player.UpdatePosition(move, grid);
 
    // Display the updated map 
    Display_Map(player);
