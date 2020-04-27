@@ -26,5 +26,5 @@ void print_file()
 
 void add(string player_name, int score)
 {
-       //To write
+    
 }
