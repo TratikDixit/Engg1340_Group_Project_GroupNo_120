@@ -127,20 +127,3 @@ void MapController::Update_Map(Player& player) {
    Display_Map(player);
 
 }
-
-int main() {
-
-   MapController controller;
- 
-   controller.Load_Map("");
-
-   // Create a new player 
-   Player player;
-
-   bool game_over = false; 
-   
-   while (!game_over) {
-      controller.Update_Map(player);
-   }   
-}
-
