@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include "Character_UI.h" 
-#include "Enemy.h"
+#include "headers/Character_UI.h" 
+#include "headers/Enemy.h"
 
 Enemy::Enemy() {
 

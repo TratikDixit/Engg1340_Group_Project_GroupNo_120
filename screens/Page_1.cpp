@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
+int display_screen()
 {
   // Clear the initial screen
   system("cls");
@@ -51,12 +51,6 @@ _______   _______    ___________   _________________ _____  ___  _____
 \____/  \_/ \____/    \___/\_|     \_____/\___/|___/  \___/\_| |_/\____/)" ;
   cout<<intro<<"\n"<<background<<"\n"<<Menu_Drop;
   cin>>choice;
-  
-  // if(choice==1) {
-  //   Play();
-  // } else if(choice==2) {
-  //   print_file();  
-  // }
- 
+
   cout<<"Thanks for playing";
 }

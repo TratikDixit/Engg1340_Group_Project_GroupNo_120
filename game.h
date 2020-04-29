@@ -23,7 +23,6 @@ struct Pointer{
     while(getline(file, line)){
         Maze.push_back(line); 
     }
-
     file.close();
      
    }

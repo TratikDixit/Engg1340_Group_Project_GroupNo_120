@@ -1,29 +1,20 @@
+/*
+ * This class is basically used to control the different operations on any 
+ * map. It handles all the events and player dealing making the main
+ * code free from all the map code. 
+ */
+
 #include <iostream>
 #include <fstream> 
 #include<vector>
 #include <cstdio>
 #include <stdlib.h>
-#include "Enemy.h"
-#include "game.h"
-#include "player_info.h"
+#include "headers/MapController.h"
+#include "headers/Enemy.h"
+#include "../game.h"
+#include "headers/player_info.h"
 
 using namespace std;
-
-class MapController {
-   vector<string> grid;
-   // Stores the enemies in the current map 
-   vector<Enemy> enemies; 
-   // Stores the positions that are free in the map 
-   vector<Position> free_positions; 
-   public: 
-   void Load_Map(string);
-   void LoadEnemies();
-   void Display_Map(Player); 
-   void Update_Map(Player&); 
-   void ChangeFont(int);
-   bool CheckCell(int, int, Player);
-
-};
 
 void MapController::Load_Map(string level_id) {
    // 
@@ -31,7 +22,7 @@ void MapController::Load_Map(string level_id) {
    //
    
    // Stores the path of the folder containing the levels
-   string BASE_PATH = "./data/levels";
+   string BASE_PATH = "../data/levels";
    
    // current_maze = Load_Maze(BASE_PATH+level_id); - this is how we should load the maze 
    // Load the grid from the file
@@ -127,3 +118,19 @@ void MapController::Update_Map(Player& player) {
    Display_Map(player);
 
 }
+
+// int main() {
+
+//    MapController controller;
+ 
+//    controller.Load_Map("");
+
+//    // Create a new player 
+//    Player player;
+
+//    bool game_over = false; 
+   
+//    while (!game_over) {
+//       controller.Update_Map(player);
+//    }   
+// }
