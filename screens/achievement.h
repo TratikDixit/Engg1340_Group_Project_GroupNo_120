@@ -26,5 +26,11 @@ void print_file()
 
 void add(string player_name, int score)
 {
-       //To write
+  string result = player_name + "\t\t\t"+to_string(score) +"\n" ;
+    
+    ofstream MyFile("achievements.txt", ios::app);
+     MyFile <<result;
+     MyFile.close(); 
+return;
+    
 }
