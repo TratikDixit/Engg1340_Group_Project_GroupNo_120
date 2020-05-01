@@ -32,8 +32,8 @@ class Character {
     // Returns the name/type of the character
     string GetName(); 
 
-    // Returns the position of the character as a vector
-    vector<int> GetPosition();
+    // Returns a pointer to the position of the character
+    Position* GetPosition();
 
     // Sets the starting position of the character
     void SetPosition(int, int);

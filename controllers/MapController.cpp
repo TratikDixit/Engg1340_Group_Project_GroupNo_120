@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <stdlib.h>
 #include "headers/MapController.h"
+#include "headers/Chest.h"
 
 using namespace std;
 
@@ -50,17 +51,17 @@ void MapController::LoadEnemies() {
 
 bool MapController::CheckCell(int row, int col, Player player) {
    
-   vector<int> playerPosition = player.GetPosition();
+   Position* playerPosition = player.GetPosition();
 
    // Check if the player is at the cell 
-   if (row == playerPosition[0] && col == playerPosition[1]) {
+   if (row == playerPosition->x && col == playerPosition->y) {
       return true;
    }
 
    // Check the position of each enemy 
    for (int i = 0; i < enemies.size(); i++) {
-      vector<int> enemyPosition = enemies[i].GetPosition();
-      if (enemyPosition[0] == row && enemyPosition[1] == col) {
+      Position* enemyPosition = enemies[i].GetPosition();
+      if (enemyPosition->x == row && enemyPosition->y == col) {
          return true;
       }
    }
@@ -106,6 +107,26 @@ void MapController::Update_Map(Player& player) {
    bool updateTick = player.UpdatePosition(move, grid);
 
    if (updateTick) {
+      // Get the position of the player 
+      Position* playerPosition = player.GetPosition();
+
+      // Check the current cell of the player 
+      char currCell = grid[playerPosition->x][playerPosition->y];
+
+      if (currCell == 'C' || currCell == 'W') {
+         // Create and open new chest
+         Chest chest(currCell); 
+         string item = chest.open();
+         cout<<"You got a "<<item<<"!"<<endl;
+         
+         char choice; 
+         cout<<"Press X to equip. ";
+         cin>>choice;
+      } 
+
+      // Delete the element from the current location 
+      grid[playerPosition->x][playerPosition->y] = '.';
+
       // Display the updated map 
       Display_Map(player);
    } 

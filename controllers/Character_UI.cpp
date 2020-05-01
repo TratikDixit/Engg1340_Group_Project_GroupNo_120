@@ -1,5 +1,6 @@
 #include <iostream>
 #include "headers/Character_UI.h"
+#include "headers/Chest.h"
 
 using namespace std;
 
@@ -26,12 +27,9 @@ string Character::GetName() {
     return name; 
 }
 
-vector<int> Character::GetPosition() {
-    vector<int> pos; 
-
-    pos.push_back(P.x);
-    pos.push_back(P.y);
-
+Position* Character::GetPosition() {
+    // Point to the position of the character
+    Position* pos = &P; 
     return pos;
 }
 
@@ -69,9 +67,23 @@ bool Character::UpdatePosition(char move, vector<string> grid) {
     // Check for wall collision
     if (grid[updated_x][updated_y] != '#') {
         char choice; 
-        if (grid[updated_x][updated_y] != '.') {
+        char cell = grid[updated_x][updated_y];
+        if (cell != '.') {
             // Check if the players wants to interact with the object 
-            cout<<"Interact with object? (y/n): ";
+            if (cell == '=' || cell == '|') {
+                cout<<"Open door? ";
+            } else if (cell == '@') {
+                cout<<"Enemy! Attack? ";
+            } else if (cell == 'C') {
+                cout<<"You found a chest! Open? ";
+            } else if (cell == 'A') {
+                cout<<"You found an armour set. Keep? ";
+            } else if (cell == 'W') {
+                cout<<"You found a weapon crate! Open? ";
+            } else if (cell = 'H') {
+                cout<<"You found a health elixir. Drink? ";
+            }
+            cout<<"(y/n): ";
             cin>>choice;
         }
 
