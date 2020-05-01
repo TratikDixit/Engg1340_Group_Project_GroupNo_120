@@ -40,7 +40,7 @@ void Character::SetPosition(int x, int y) {
     P.y = y;
 }
    
-void Character::UpdatePosition(char move, vector<string> grid) {
+bool Character::UpdatePosition(char move, vector<string> grid) {
     int dx = 0, dy = 0;
     if (move == 'w') {
         // Move up
@@ -63,19 +63,31 @@ void Character::UpdatePosition(char move, vector<string> grid) {
     int updated_x = P.x+dx; 
     int updated_y = P.y+dy;
 
+    // Checks if the current tick has to be updated
+    bool updateTick = false;
+
     // Check for wall collision
     if (grid[updated_x][updated_y] != '#') {
-        // Check if there is a gate at the new position 
-        
-        if (grid[updated_x][updated_y] == '=') {
-            cout<<"Open the gate (50 Energy)? "<<endl;
-        } else {
-            P.x = updated_x;
-            P.y = updated_y;
-        }      
+        char choice; 
+        if (grid[updated_x][updated_y] != '.') {
+            // Check if the players wants to interact with the object 
+            cout<<"Interact with object? (y/n): ";
+            cin>>choice;
+        }
+
+        if (grid[updated_x][updated_y] == '.' || choice == 'y') {
+            // Update the position of the player 
+            P.x = updated_x; 
+            P.y = updated_y; 
+            // Update the current tick 
+            updateTick = true;
+        }
     }
+    
+    return updateTick;
 }
 
 string Character::GetType() {
     return type;
 }
+

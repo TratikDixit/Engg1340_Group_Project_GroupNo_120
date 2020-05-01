@@ -39,7 +39,7 @@ class Character {
     void SetPosition(int, int);
 
     // Update the position of a player 
-    void UpdatePosition(char, vector<string>);
+    bool UpdatePosition(char, vector<string>);
 
     // Allows the player to move in the map 
     void MoveCharacter(char, vector<string>);

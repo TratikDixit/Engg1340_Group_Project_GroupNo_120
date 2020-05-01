@@ -1,18 +1,9 @@
-/*
- * This class is basically used to control the different operations on any 
- * map. It handles all the events and player dealing making the main
- * code free from all the map code. 
- */
-
 #include <iostream>
 #include <fstream> 
 #include<vector>
 #include <cstdio>
 #include <stdlib.h>
 #include "headers/MapController.h"
-#include "headers/Enemy.h"
-#include "../game.h"
-#include "headers/player_info.h"
 
 using namespace std;
 
@@ -22,7 +13,7 @@ void MapController::Load_Map(string level_id) {
    //
    
    // Stores the path of the folder containing the levels
-   string BASE_PATH = "../data/levels";
+   string BASE_PATH = "./data/levels";
    
    // current_maze = Load_Maze(BASE_PATH+level_id); - this is how we should load the maze 
    // Load the grid from the file
@@ -112,25 +103,26 @@ void MapController::Update_Map(Player& player) {
    // Get the keyboard input from the Character
     char move = Input(); 
    // Move the player 
-   player.UpdatePosition(move, grid);
+   bool updateTick = player.UpdatePosition(move, grid);
 
-   // Display the updated map 
-   Display_Map(player);
-
+   if (updateTick) {
+      // Display the updated map 
+      Display_Map(player);
+   } 
 }
 
-// int main() {
+int main() {
+   MapController controller;
 
-//    MapController controller;
- 
-//    controller.Load_Map("");
+   controller.Load_Map("");
 
-//    // Create a new player 
-//    Player player;
+   // Create a new player 
+   Player player;
 
-//    bool game_over = false; 
-   
-//    while (!game_over) {
-//       controller.Update_Map(player);
-//    }   
-// }
+   bool game_over = false;
+
+   while (!game_over) {
+      controller.Update_Map(player);
+   }   
+
+}

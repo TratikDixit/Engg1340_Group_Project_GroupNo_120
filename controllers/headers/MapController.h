@@ -1,6 +1,11 @@
 #ifndef MAP_CONTROLLER 
 #define MAP_CONTROLLER
 
+#include "Enemy.h"
+#include "../../game.h"
+#include "player_info.h"
+
+using namespace std;
 
 class MapController {
    vector<string> grid;
