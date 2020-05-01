@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void print_file() 
+void print_achievement_file() 
 { 
        string line;
        ifstream myfile ("achievements.txt");
@@ -24,7 +24,7 @@ void print_file()
 }    
 
 
-void add(string player_name, int score)
+void add_achievement(string player_name, int score)
 {
   string result = player_name + "\t\t\t"+to_string(score) +"\n" ;
     
