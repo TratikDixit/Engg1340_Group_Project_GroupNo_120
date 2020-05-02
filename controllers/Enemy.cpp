@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <cmath>
 #include "headers/Character_UI.h" 
 #include "headers/Enemy.h"
 
@@ -23,3 +24,21 @@ Enemy::Enemy() {
 }
 
 
+bool Enemy::Enemy_Kill()
+{
+    // This functions checks if the player is in proximity and if so kills the player
+    
+
+        Position* player_co_or= GetPosition();
+        for (int i = 0; i < enemies.size(); i++) 
+        {
+            Position* enemyPosition = enemies[i].GetPosition();
+            // check if the enemy is in direct proximity to the player
+            if (abs(enemyPosition.x - player_co_or.x)== 1 && abs(enemyPosition.y - player_co_or.y)== 1 ))
+            {
+                enemyPosition = player_co_or;
+                return true; // game is over
+            }
+        }
+    return false; // no enemy in proximity
+}
