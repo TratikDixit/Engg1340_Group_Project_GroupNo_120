@@ -1,16 +1,16 @@
 #ifndef GAME_CONTROLLER
 #define GAME_CONTROLLER
 
-#include "../screens/start_game.h"
-#include "../screens/achievement.h"
-#include "../screens/instruction.h"
+#include "../../screens/start_game.h"
+#include "../../screens/achievement.h"
+#include "../../screens/instruction.h"
 
 
-#include "../controllers/headers/Character_UI.h"
-#include "../controllers/headers/Chest.h"
-#include "../controllers/headers/Enemy.h"
-#include "../controllers/headers/MapController.h"
-#include "../controllers/headers/player_info.h"
+#include "Character_UI.h"
+#include "Chest.h"
+#include "Enemy.h"
+#include "MapController.h"
+#include "player_info.h"
 
 using namespace std;
 
