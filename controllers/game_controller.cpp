@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Play_Game()
+void game_controller::Play_Game()
 {
         int choice  = display_screen();
         // this the very first screen displays the basic stuff
