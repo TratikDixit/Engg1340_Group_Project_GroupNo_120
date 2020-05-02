@@ -16,6 +16,7 @@ using namespace std;
 
 class Game {
        
+       public:
        void Play_Game();  // co-ordinate the calling of all header files
        
 };
