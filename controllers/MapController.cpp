@@ -144,6 +144,8 @@ int main() {
 
    while (!game_over) {
       controller.Update_Map(player);
+ // check if the player can be killed by the enemy
+      game_over = Enemy_Kill();
    }   
 
 }
