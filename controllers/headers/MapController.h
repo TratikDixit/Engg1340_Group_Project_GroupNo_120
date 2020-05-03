@@ -21,7 +21,7 @@ class MapController {
    void Update_Map(Player&); 
    void ChangeFont(int);
    // Checks if a given cell is occupied or not
-   bool CheckCell(int, int, Player);
+   bool CheckCell(int, int, Position*);
 
 };
 

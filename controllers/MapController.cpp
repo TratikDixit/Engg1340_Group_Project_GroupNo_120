@@ -1,12 +1,21 @@
 #include <iostream>
 #include <fstream> 
-#include<vector>
+#include <vector>
 #include <cstdio>
 #include <stdlib.h>
 #include "headers/MapController.h"
 #include "headers/Chest.h"
 
 using namespace std;
+
+// Helper functions 
+int min(int a, int b) {
+   return (a > b) ? b : a;
+}
+
+int max(int a, int b) {
+   return (a > b) ? a : b;
+}
 
 void MapController::Load_Map(string level_id) {
    // 
@@ -49,10 +58,7 @@ void MapController::LoadEnemies() {
    }
 }
 
-bool MapController::CheckCell(int row, int col, Player player) {
-   
-   Position* playerPosition = player.GetPosition();
-
+bool MapController::CheckCell(int row, int col, Position* playerPosition) {
    // Check if the player is at the cell 
    if (row == playerPosition->x && col == playerPosition->y) {
       return true;
@@ -75,17 +81,23 @@ void MapController::Display_Map(Player player) {
    //
 
    // Get the position of the player 
-
-   // Clear the previous output screen
-   system("cls");
-
+   cout<<"\n\n\n\n\n ----- NEW TICK ---- \n\n\n\n\n";
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
    } else {
-      for (int i = 0; i < grid.size(); i++) {
-         for (int j  = 0; j < grid[i].size(); j++) {  
+      // Defines the size of the region the player can see
+      const int CAMERA_SIZE = 10;
+      // Get the current position of the player 
+      Position* playerPosition = player.GetPosition();
+
+      int row_minBound = max(playerPosition->x-CAMERA_SIZE, 0);
+      int row_maxBound = min(playerPosition->x+CAMERA_SIZE, grid.size()-1);
+      int col_minBound = max(playerPosition->y-CAMERA_SIZE, 0);
+      int col_maxBound = min(playerPosition->y+CAMERA_SIZE, grid[0].size()-1);
+      for (int i = row_minBound; i < row_maxBound; i++) {
+         for (int j  = col_minBound; j < col_maxBound; j++) {  
             // Check if the grid cell is occupied 
-            bool isOccupied = CheckCell(i, j, player); 
+            bool isOccupied = CheckCell(i, j, playerPosition); 
             
             if (isOccupied == true) {
                cout<<'@';
@@ -150,7 +162,7 @@ void MapController::Update_Map(Player& player) {
 
       // Delete the element from the current location 
       grid[playerPosition->x][playerPosition->y] = '.';
-
+      
       // Display the updated map 
       Display_Map(player);
    } 
