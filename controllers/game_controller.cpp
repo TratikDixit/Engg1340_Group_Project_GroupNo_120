@@ -18,7 +18,7 @@ void game_controller::Play_Game()
          
              // once game is over
           
-              string player_name = getname();
+              string player_name = GetName();
               int level_unlocked = 0 ;
           
              // will put a function here when to incorporate more levels
