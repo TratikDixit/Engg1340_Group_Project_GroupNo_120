@@ -1,5 +1,6 @@
 #include <iostream>
 #include "headers/game_controller.h"
+#include "headers/MapController.h"
 
 using namespace std;
 
@@ -13,12 +14,12 @@ void game_controller::Play_Game()
         {
              // first instructions to the game 
                print_instruction();
-         
+        MapController M;         
+             M.console();
              //only map controller needs to be called
          
              // once game is over
-          
-              string player_name = GetName();
+              string player_name = "";
               int level_unlocked = 0 ;
           
              // will put a function here when to incorporate more levels
@@ -45,11 +46,12 @@ void game_controller::Play_Game()
            //incorrect input
            cout<<"Incorrect Input"<<endl;
         }
-        cout<<"Thank You for playing! "<<endl;
+        cout<<"Thank You for playing! ";
 }
 
 int main()
 {
-      Play_Game();
+      game_controller obj;
+      obj.Play_Game();
       return 0;
 }
