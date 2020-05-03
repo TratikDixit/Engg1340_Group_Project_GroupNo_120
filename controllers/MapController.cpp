@@ -38,8 +38,8 @@ void MapController::LoadEnemies() {
       Enemy enemy; 
       
       // Choose a random free location for the enemy
-      int enemy_x = 3; 
-      int enemy_y = 5; 
+      int enemy_x = 2; 
+      int enemy_y = 8; 
 
       // Update the position for the enemy 
       enemy.SetPosition(enemy_x, enemy_y);
@@ -97,12 +97,36 @@ void MapController::Display_Map(Player player) {
          cout<<endl;
       }
    }
+
+   // Display the health and armour points of the player
+   cout<<"HP: "<<player.HP<<" AP: "<<player.AP<<"\n";
   
 }
 
 void MapController::Update_Map(Player& player) {
+   // Check for collision with enemies 
+   for (int i = 0; i < enemies.size(); i++) {
+      bool isHit = enemies[i].Enemy_Kill(&player);
+      if (isHit) {
+         char ch;
+         cout<<"You have been hit! \nPress X to continue: ";
+         cin>>ch;
+         // Reduce the AP
+         if (player.AP > 0) {
+            player.AP = (player.AP > 50) ? player.AP-50 : 0;
+         } else {
+            player.HP = (player.HP > 50) ? player.HP-50 : 0;
+         }
+      }   
+   }
+
+   if (player.HP == 0) {
+      // Stop updating further
+      return ;
+   } 
+   
    // Get the keyboard input from the Character
-    char move = Input(); 
+   char move = Input(); 
    // Move the player 
    bool updateTick = player.UpdatePosition(move, grid);
 
@@ -142,10 +166,15 @@ int main() {
 
    bool game_over = false;
 
-   while (!game_over) {
-      controller.Update_Map(player);
- // check if the player can be killed by the enemy
-      game_over = Enemy_Kill();
-   }   
+   controller.Display_Map(player);
 
+   while (!game_over) {
+      // check if the player can be killed by the enemy
+      if (player.HP == 0) {
+         cout<<"You are dead!";
+         game_over = true;
+      } else {
+         controller.Update_Map(player);
+      }
+   }   
 }

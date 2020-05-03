@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include "Character_UI.h" // Base class
+#include "player_info.h"
 #include <string>
 using namespace std;
 
@@ -15,6 +16,8 @@ class Enemy : public Character {
     public: 
     // Constructor function
     Enemy();
+    // Attacks the player if nearby 
+    bool Enemy_Kill(Player*);
 };
 
 #endif

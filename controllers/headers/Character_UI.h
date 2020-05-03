@@ -13,14 +13,14 @@ struct Position {
     int y; 
 };
 
-class Character {
-    Position P; 
-    
+class Character {    
     protected:
     // These members are protected so that the inherited classes 
     // can directly access them 
+    Position P; 
     string name; 
     string type; // Stores the type of character
+    public:
     int HP; // Health points
     int AP; // Armour points 
 

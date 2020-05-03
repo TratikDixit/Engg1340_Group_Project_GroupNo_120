@@ -24,21 +24,18 @@ Enemy::Enemy() {
 }
 
 
-bool Enemy::Enemy_Kill()
+bool Enemy::Enemy_Kill(Player* player)
 {
     // This functions checks if the player is in proximity and if so kills the player
     
 
-        Position* player_co_or= GetPosition();
-        for (int i = 0; i < enemies.size(); i++) 
-        {
-            Position* enemyPosition = enemies[i].GetPosition();
-            // check if the enemy is in direct proximity to the player
-            if (abs(enemyPosition.x - player_co_or.x)== 1 && abs(enemyPosition.y - player_co_or.y)== 1 ))
-            {
-                enemyPosition = player_co_or;
-                return true; // game is over
-            }
+        Position* player_co_or = (*player).GetPosition();
+
+        // Position* enemyPosition = enemies[i].GetPosition(); No need to call this as we have direct access to position 
+        // check if the enemy is in direct proximity to the player
+        if (abs(P.x - player_co_or->x) <= 1 && abs(P.y - player_co_or->y) <= 1 ) {
+            return true; // game is over
         }
+    
     return false; // no enemy in proximity
 }
