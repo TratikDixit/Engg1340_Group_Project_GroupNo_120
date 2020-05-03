@@ -45,7 +45,7 @@ void game_controller::Play_Game()
            //incorrect input
            cout<<"Incorrect Input"<<endl;
         }
-        cout<<"Thank You for playing! ";
+        cout<<"Thank You for playing! "<<endl;
 }
 
 int main()
