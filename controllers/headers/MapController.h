@@ -2,7 +2,7 @@
 #define MAP_CONTROLLER
 
 #include "Enemy.h"
-#include "../../game.h"
+#include "game.h"
 #include "player_info.h"
 
 using namespace std;
