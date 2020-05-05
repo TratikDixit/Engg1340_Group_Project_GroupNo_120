@@ -189,16 +189,14 @@ void MapController::Update_Map(Player& player) {
 
 
 void MapController::console() {
-   MapController controller;
-
-   controller.Load_Map("");
+    Load_Map("");
 
    // Create a new player 
    Player player;
 
    bool game_over = false;
 
-   controller.Display_Map(player);
+   Display_Map(player);
 
    while (!game_over) {
       // check if the player can be killed by the enemy
@@ -206,7 +204,7 @@ void MapController::console() {
          cout<<"You are dead!";
          game_over = true;
       } else {
-         controller.Update_Map(player);
+         Update_Map(player);
       }
    }   
 }
