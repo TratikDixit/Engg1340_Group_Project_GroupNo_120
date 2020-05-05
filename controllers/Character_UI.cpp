@@ -1,8 +1,9 @@
 #include <iostream>
-#include "headers/Character_UI.h"
-#include "headers/Chest.h"
+#include "Character_UI.h"
+#include "Chest.h"
 
 using namespace std;
+
 
 // Constructor function
 Character::Character() {
