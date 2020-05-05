@@ -34,7 +34,7 @@ bool Enemy::Enemy_Kill(Player* player)
         // Position* enemyPosition = enemies[i].GetPosition(); No need to call this as we have direct access to position 
         // check if the enemy is in direct proximity to the player
         // allows the player to attack from top and right
-         if ( ((enemyPosition.x - player_co_or.x)  <=1  && player_co_or.y == enemyPosition.y)  || (player_co_or.x == enemyPosition.x  && player_co_or.y - enemyPosition.y <=1) ) 
+         if ((abs(P.x - player_co_or->x)  <=1  && player_co_or->y == P.y)  || (player_co_or->x == P.x  && abs(player_co_or->y - P.y) <=1 && player_co_or->y < P.y) ) 
         {
             return true; // game is over
         }

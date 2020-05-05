@@ -80,8 +80,10 @@ bool Character::UpdatePosition(char move, vector<string> grid) {
                 cout<<"You found an armour set. Keep? ";
             } else if (cell == 'W') {
                 cout<<"You found a weapon crate! Open? ";
-            } else if (cell = 'H') {
+            } else if (cell == 'H') {
                 cout<<"You found a health elixir. Drink? ";
+                // Regenerate the health 
+                HP = 100; 
             }
             cout<<"(y/n): ";
             cin>>choice;

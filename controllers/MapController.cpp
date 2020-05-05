@@ -149,17 +149,36 @@ void MapController::Update_Map(Player& player) {
       // Check the current cell of the player 
       char currCell = grid[playerPosition->x][playerPosition->y];
 
+      bool gotItem = false; // Checks if player got item to display interactive menu
+
       if (currCell == 'C' || currCell == 'W') {
+         gotItem = true;
          // Create and open new chest
          Chest chest(currCell); 
          string item = chest.open();
          cout<<"You got a "<<item<<"!"<<endl;
-         
-         char choice; 
-         cout<<"Press X to equip. ";
-         cin>>choice;
-      } 
 
+      } else if (currCell == 'H') {
+         gotItem = true;
+         // Regenerate the health 
+         player.HP = 100; 
+      } else if (currCell == 'A') {
+         gotItem = true;
+         // Create an armour chest 
+         Chest chest('A');
+         string item = chest.open();
+         cout<<"You got "<<item<<"!"<<endl;
+
+         // I have named the items so that longer ones have more AP
+         player.AP += item.length() * 5;
+      }
+
+      if (gotItem) {
+         char ch;
+         cout<<"Press X to equip! ";
+         cin>>ch;
+      }
+      
       // Delete the element from the current location 
       grid[playerPosition->x][playerPosition->y] = '.';
       

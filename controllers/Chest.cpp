@@ -8,10 +8,13 @@ using namespace std;
 Chest::Chest(char type) {
     if (type == 'C') {
         // Initialize chest with default items
-        items =  {"Sword", "Axe", "Long Sword", "Dagger", "Bow", "Knife", "Spells"};
+        items =   {"Celestia, Might of the Empty Void", "Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe", "Long Sword","Long Sword","Long Sword", "Crucifix, Harp of Mountains", "Basic Dagger", "Wooden Bow", "Knife","Knife","Knife","Knife","Knife", "Phantomsong, Bauble of Illuminated Dreams", "Sword", "Wooden Spear", "Gloves", "Gandiva, The Invincible Bow of Brahma", "Vijaya, The Divine Bow", "Govardhana, Torch of Eternity", "Blackplate", "Helmet of Odin", "Armor of Endless Souls", "Ivory Chestguard of Lost Glory", "Scaled Tunic of Haunted Sorrow", "Chestpiece", "Helmet", "Robe", "Cloak", "Boots", "Leather Robe", "Leather Helmet", "Steel Breastplate of Condemned Might"};
     } else if (type == 'W') {
         // Initialize chest with weapons only
-        items =  {"Sword", "Axe", "Long Sword", "Dagger", "Bow", "Knife", "Spells"};
+        items =  {"Celestia, Might of the Empty Void", "Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe", "Long Sword","Long Sword","Long Sword", "Crucifix, Harp of Mountains", "Basic Dagger", "Wooden Bow", "Knife","Knife","Knife","Knife","Knife", "Phantomsong, Bauble of Illuminated Dreams", "Sword", "Wooden Spear", "Gloves", "Gandiva, The Invincible Bow of Brahma", "Vijaya, The Divine Bow", "Govardhana, Torch of Eternity"};
+    } else if (type == 'A') {
+        // Initialize chest with weapons only
+        items =  {"Blackplate", "Helmet of Odin", "Armor of Endless Souls", "Ivory Chestguard of Lost Glory", "Scaled Tunic of Haunted Sorrow", "Chestpiece", "Helmet", "Robe", "Cloak", "Boots", "Leather Robe", "Leather Helmet", "Steel Breastplate of Condemned Might"};
     }
 }
 
