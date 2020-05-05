@@ -4,8 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <stdlib.h>
-#include "headers/MapController.h"
-#include "headers/Chest.h"
+#include "MapController.h"
+#include "Chest.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ void MapController::Load_Map(string level_id) {
    //
    
    // Stores the path of the folder containing the levels
-   string BASE_PATH = "./data/levels";
+   string BASE_PATH = "../data/levels/level1.txt";
    
    // current_maze = Load_Maze(BASE_PATH+level_id); - this is how we should load the maze 
    // Load the grid from the file
@@ -41,21 +41,27 @@ void MapController::LoadEnemies() {
    //  
 
    // The number of enemies to be loaded 
-   int num_enemies = 1; 
+   int num_enemies = 10; 
 
    for (int i = 0; i < num_enemies; i++) {
       // Create a new enemy character 
       Enemy enemy; 
-      
+       srand(0);
       // Choose a random free location for the enemy
-      int enemy_x = 2; 
-      int enemy_y = 8; 
+      
+      int enemy_x , enemy_y ;
+      do{
+          enemy_x = rand() % 70;
+          enemy_y = rand() % 70;
+       }
+      while (grid[enemy_x][enemy_y]!='.');
 
       // Update the position for the enemy 
       enemy.SetPosition(enemy_x, enemy_y);
 
       // Save the enemy 
       enemies.push_back(enemy);
+
    }
 }
 
@@ -216,17 +222,16 @@ void MapController::Update_Map(Player& player) {
    } 
 }
 
-int main() {
-   MapController controller;
 
-   controller.Load_Map("");
+void MapController::console() {
+    Load_Map("");
 
    // Create a new player 
    Player player;
 
    bool game_over = false;
 
-   controller.Display_Map(player);
+   Display_Map(player);
 
    while (!game_over) {
       // check if the player can be killed by the enemy
@@ -234,7 +239,13 @@ int main() {
          cout<<"You are dead!";
          game_over = true;
       } else {
-         controller.Update_Map(player);
+         Update_Map(player);
       }
    }   
+}
+int main()
+{
+MapController c;
+c.console();
+return 0;
 }

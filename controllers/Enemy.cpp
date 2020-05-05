@@ -2,8 +2,9 @@
 #include <vector>
 #include <cstdlib>
 #include <cmath>
-#include "headers/Character_UI.h" 
-#include "headers/Enemy.h"
+#include "Character_UI.h" 
+#include "Enemy.h"
+
 
 Enemy::Enemy() {
 
@@ -24,21 +25,34 @@ Enemy::Enemy() {
 }
 
 
-bool Enemy::Enemy_Kill(Player* player)
+bool Enemy::Enemy_Kill(Player* p,int x , int y)
 {
-    // This functions checks if the player is in proximity and if so kills the player
-    
-
-        Position* player_co_or = (*player).GetPosition();
-
-        // Position* enemyPosition = enemies[i].GetPosition(); No need to call this as we have direct access to position 
-        // check if the enemy is in direct proximity to the player
-        // allows the player to attack from top and right
-         if ((abs(P.x - player_co_or->x)  <=1  && player_co_or->y == P.y)  || (player_co_or->x == P.x  && abs(player_co_or->y - P.y) <=1 && player_co_or->y < P.y) ) 
-        {
-            return true; // game is over
-        }
-
+    if( (x-P.x==1 && y==P.y) ||  (P.y-y==1 && x==P.x)) // checks if enemy is other above or on right of the player
+             return true;
+        
     
     return false; // no enemy in proximity
+}
+void Enemy::move_enemy(int &x , int &y)
+{
+    if(grid[x-1][y]=='.')
+        {
+            x=x-1;
+            return;
+        }
+    if(grid[x][y-1]=='.')
+            {
+                  y= y-1;
+                  return;
+            }
+    if(grid[x][y+1]=='.')
+            {
+                  y= y+1;
+                  return;
+            }
+    if(grid[x+1][y-1]=='.')
+            {
+                  x= x+1;
+                  return;
+            }
 }
