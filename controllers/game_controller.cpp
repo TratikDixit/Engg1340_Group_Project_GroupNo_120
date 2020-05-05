@@ -1,6 +1,13 @@
 #include <iostream>
-#include "headers/game_controller.h"
-#include "headers/MapController.h"
+
+#include "../screens/start_game.h"
+#include "../screens/achievement.h"
+#include "../screens/instruction.h"
+
+
+#include "game_controller.h"
+#include "MapController.h"
+#include "player_info.h"
 
 using namespace std;
 
@@ -14,9 +21,9 @@ void game_controller::Play_Game()
         {
              // first instructions to the game 
                print_instruction();
-        MapController M;         
+        
+            MapController M;         
              M.console();
-             //only map controller needs to be called
          
              // once game is over
               string player_name = "";
@@ -51,7 +58,7 @@ void game_controller::Play_Game()
 
 int main()
 {
-      game_controller obj;
-      obj.Play_Game();
+      game_controller g ;
+     g.Play_Game();
       return 0;
 }
