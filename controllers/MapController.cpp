@@ -2,6 +2,7 @@
 #include <fstream> 
 #include <vector>
 #include <cstdio>
+#include <cstdlib>
 #include <stdlib.h>
 #include "MapController.h"
 #include "Chest.h"
@@ -117,7 +118,7 @@ void MapController::Display_Map(Player player) {
    }
 
    // Display the health and armour points of the player
-   cout<<"HP: "<<player.HP<<" AP: "<<player.AP<<"\n";
+   cout<<"HP: "<<player.HP<<" AP: "<<player.AP<<" Attack: "<<player.attack<<"\n";
   
 }
 
@@ -155,36 +156,64 @@ void MapController::Update_Map(Player& player) {
       // Check the current cell of the player 
       char currCell = grid[playerPosition->x][playerPosition->y];
 
-      bool gotItem = false; // Checks if player got item to display interactive menu
-
-      if (currCell == 'C' || currCell == 'W') {
-         gotItem = true;
+      if (currCell == 'C' || currCell == 'W' || currCell == 'A') {
          // Create and open new chest
          Chest chest(currCell); 
          string item = chest.open();
-         cout<<"You got a "<<item<<"!"<<endl;
-
-      } else if (currCell == 'H') {
-         gotItem = true;
-         // Regenerate the health 
-         player.HP = 100; 
-      } else if (currCell == 'A') {
-         gotItem = true;
-         // Create an armour chest 
-         Chest chest('A');
-         string item = chest.open();
-         cout<<"You got "<<item<<"!"<<endl;
-
-         // I have named the items so that longer ones have more AP
-         player.AP += item.length() * 5;
-      }
-
-      if (gotItem) {
-         char ch;
-         cout<<"Press X to equip! ";
+         cout<<"You got a "<<item<<" (+"<<item.length()*5<<")!"<<endl;
+         char ch; 
+         cout<<"Press X to equip item... ";
          cin>>ch;
+         
+         if (ch == 'X') {
+            char item_type = chest.getType(item);
+            if (item_type == 'A') {
+               player.AP += item.length() * 5;
+            } else {
+               player.attack = item.length()*5;
+            }
+         }        
+
+      } else {
+         if (currCell == 'H') {
+            // Regenerate the health 
+            player.HP = 100; 
+            
+         } else if (currCell == '~') {
+            cout<<"You lost 10 HP! ";
+            player.HP -= 10;
+
+            int checker = rand()%101; 
+            if (checker < 20) {
+               cout<<"You were bit by a squid (-30HP, -50AP)! ";
+            }
+         
+         } else if (currCell == '=' || currCell == '|') {
+            // Generate a random number for random events
+            int checker = rand()%101;          
+            if (checker < 20) {
+               // Spider bite with 20% chance
+               cout<<"You were bit by a spider (-25HP)! ";
+               player.HP = (player.HP > 20) ? player.HP-20 : 0;
+            } else if (checker < 25) {
+               // Boulder fall with 5% chance
+               cout<<"A boulder fell on you (-50HP, -100AP)! ";
+               player.HP = (player.HP > 50) ? player.HP-50 : 0; 
+               player.AP = (player.AP > 100) ? player.AP-100 : 0;
+            } else if (checker < 28) {
+               // Cursed door with 3% chance 
+               cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)!";
+               player.HP = (player.HP > 95) ? player.HP-95 : 0; 
+               player.AP = (player.AP > 500) ? player.AP-500 : 0;
+               player.HP = (player.attack > 200) ? player.attack-20 : 0; 
+            }
+            char ch;
+            cout<<"Press X to continue... ";
+            cin>>ch;
+         }
+
+        
       }
-      
       // Delete the element from the current location 
       grid[playerPosition->x][playerPosition->y] = '.';
       

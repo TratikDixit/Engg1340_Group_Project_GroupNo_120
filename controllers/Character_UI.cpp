@@ -85,6 +85,8 @@ bool Character::UpdatePosition(char move, vector<string> grid) {
                 cout<<"You found a health elixir. Drink? ";
                 // Regenerate the health 
                 HP = 100; 
+            } else if (cell == '~') {
+                cout<<"Wade through water (-10HP)? ";
             }
             cout<<"(y/n): ";
             cin>>choice;
