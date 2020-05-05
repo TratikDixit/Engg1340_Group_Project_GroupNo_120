@@ -2,8 +2,9 @@
 #include <vector>
 #include <cstdlib>
 #include <cmath>
-#include "headers/Character_UI.h" 
-#include "headers/Enemy.h"
+#include "Character_UI.h" 
+#include "Enemy.h"
+
 
 Enemy::Enemy() {
 
