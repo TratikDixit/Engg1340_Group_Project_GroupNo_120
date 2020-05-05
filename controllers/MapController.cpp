@@ -3,8 +3,8 @@
 #include <vector>
 #include <cstdio>
 #include <stdlib.h>
-#include "headers/MapController.h"
-#include "headers/Chest.h"
+#include "MapController.h"
+#include "Chest.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ void MapController::Load_Map(string level_id) {
    //
    
    // Stores the path of the folder containing the levels
-   string BASE_PATH = "./data/levels";
+   string BASE_PATH = "../data/levels/level1.txt";
    
    // current_maze = Load_Maze(BASE_PATH+level_id); - this is how we should load the maze 
    // Load the grid from the file
@@ -187,7 +187,8 @@ void MapController::Update_Map(Player& player) {
    } 
 }
 
-int main() {
+
+void MapController::console() {
    MapController controller;
 
    controller.Load_Map("");
@@ -208,4 +209,10 @@ int main() {
          controller.Update_Map(player);
       }
    }   
+}
+int main()
+{
+MapController c;
+c.console();
+return 0;
 }
