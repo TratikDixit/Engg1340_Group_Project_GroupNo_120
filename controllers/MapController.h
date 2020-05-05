@@ -14,12 +14,13 @@ class MapController {
    // Stores the positions that are free in the map 
    vector<Position> free_positions; 
    public: 
-   void Load_Map(string);
+   void Load_Map(string, Player*);
    // Randomly load enemies in the map 
    void LoadEnemies();
    void Display_Map(Player); 
    void Update_Map(Player&); 
    void ChangeFont(int);
+   void Update_Enemy_Positions();
    // Checks if a given cell is occupied or not
    bool CheckCell(int, int, Position*);
    void console();

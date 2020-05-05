@@ -25,34 +25,57 @@ Enemy::Enemy() {
 }
 
 
-bool Enemy::Enemy_Kill(Player* p,int x , int y)
+bool Enemy::Enemy_Kill(Player* p)
 {
-    if( (x-P.x==1 && y==P.y) ||  (P.y-y==1 && x==P.x)) // checks if enemy is other above or on right of the player
+    Position* playerPosition = (*p).GetPosition();
+    if( (playerPosition->x-P.x==1 && playerPosition->y==P.y) ||  (P.y-playerPosition->y==1 && playerPosition->x==P.x)) // checks if enemy is other above or on right of the player
              return true;
         
     
     return false; // no enemy in proximity
 }
-void Enemy::move_enemy(int &x , int &y)
-{
-    if(grid[x-1][y]=='.')
-        {
-            x=x-1;
-            return;
+void Enemy::move_enemy(vector<string> *grid) {   
+    // Stores the available moves
+    vector<char> availableMoves; 
+    // Reset the previous cell 
+    (*grid)[P.x][P.y] = '.';
+
+    if(P.x > 0 && (*grid)[P.x-1][P.y]=='.') {
+        availableMoves.push_back('w');
+    }
+    if(P.y > 0 && (*grid)[P.x][P.y-1]=='.') {
+        availableMoves.push_back('a');
+    } 
+    if(P.y < (*grid)[0].size()-1 && (*grid)[P.x][P.y+1]=='.') {
+        availableMoves.push_back('d');
+    } 
+    if(P.x < (*grid).size()-1 && (*grid)[P.x+1][P.y]=='.') {
+        availableMoves.push_back('s');
+    }
+    
+    if (availableMoves.size() > 0) {
+        // Choose an available move randomly 
+        int index = rand()%availableMoves.size();
+        char move = availableMoves[index];
+    
+
+        switch (move) {
+            case 'w':
+                P.x--;
+                break;
+            case 'a': 
+                P.y--;
+                break;
+            case 's':
+                P.x++;
+                break;
+            case 'd':
+                P.y++;
+                break;
         }
-    if(grid[x][y-1]=='.')
-            {
-                  y= y-1;
-                  return;
-            }
-    if(grid[x][y+1]=='.')
-            {
-                  y= y+1;
-                  return;
-            }
-    if(grid[x+1][y-1]=='.')
-            {
-                  x= x+1;
-                  return;
-            }
+
+        // Update the new position
+        (*grid)[P.x][P.y] = '&';
+    }
+    
 }

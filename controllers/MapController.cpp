@@ -4,8 +4,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <stdlib.h>
+#include <ctime>
 #include "MapController.h"
 #include "Chest.h"
+#include "game.h"
 
 using namespace std;
 
@@ -18,7 +20,7 @@ int max(int a, int b) {
    return (a > b) ? a : b;
 }
 
-void MapController::Load_Map(string level_id) {
+void MapController::Load_Map(string level_id, Player *player) {
    // 
    // - Loads the 2d array of the maze
    //
@@ -31,8 +33,14 @@ void MapController::Load_Map(string level_id) {
    Load_Maze(); 
    grid = Maze;
 
+   cout<<grid[0].size();
+
    // Load the enemies in the map 
    LoadEnemies();
+
+   // Initialize the position of the player
+   Position *playerPosition = (*player).GetPosition();
+   grid[playerPosition->x][playerPosition->y] = '@';
 }
 
 void MapController::LoadEnemies() {
@@ -41,24 +49,24 @@ void MapController::LoadEnemies() {
    //  
 
    // The number of enemies to be loaded 
-   int num_enemies = 10; 
+   int num_enemies = 25; 
 
    for (int i = 0; i < num_enemies; i++) {
       // Create a new enemy character 
       Enemy enemy; 
-       srand(0);
       // Choose a random free location for the enemy
-      
       int enemy_x , enemy_y ;
+      //srand(time(NULL));
       do{
-          enemy_x = rand() % 70;
-          enemy_y = rand() % 70;
+         
+         enemy_x = rand()%grid.size();
+         enemy_y = rand()%grid[0].size();
        }
-      while (grid[enemy_x][enemy_y]!='.');
-
+      while (grid[enemy_x][enemy_y] != '.');
       // Update the position for the enemy 
       enemy.SetPosition(enemy_x, enemy_y);
-
+      // Display the enemy 
+      grid[enemy_x][enemy_y] = '&';
       // Save the enemy 
       enemies.push_back(enemy);
 
@@ -82,6 +90,12 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
    return false;   
 }
 
+void MapController::Update_Enemy_Positions() {
+   for (int i = 0; i < enemies.size(); i++) {
+      enemies[i].move_enemy(&grid);
+   }
+}
+
 void MapController::Display_Map(Player player) {
    //
    // - Displays the map of the current level
@@ -97,6 +111,9 @@ void MapController::Display_Map(Player player) {
       // Get the current position of the player 
       Position* playerPosition = player.GetPosition();
 
+      // Update position of enemies
+      Update_Enemy_Positions();
+
       int row_minBound = max(playerPosition->x-CAMERA_SIZE, 0);
       int row_maxBound = min(playerPosition->x+CAMERA_SIZE, grid.size()-1);
       int col_minBound = max(playerPosition->y-CAMERA_SIZE, 0);
@@ -104,14 +121,8 @@ void MapController::Display_Map(Player player) {
       for (int i = row_minBound; i < row_maxBound; i++) {
          for (int j  = col_minBound; j < col_maxBound; j++) {  
             // Check if the grid cell is occupied 
-            bool isOccupied = CheckCell(i, j, playerPosition); 
-            
-            if (isOccupied == true) {
-               cout<<'@';
-            } else {
-               cout<<grid[i][j];
-            }
-         
+            //bool isOccupied = CheckCell(i, j, playerPosition); 
+            cout<<grid[i][j];        
          }
          cout<<endl;
       }
@@ -150,9 +161,9 @@ void MapController::Update_Map(Player& player) {
    bool updateTick = player.UpdatePosition(move, grid);
 
    if (updateTick) {
-      // Get the position of the player 
+      // Get the new position of the player 
       Position* playerPosition = player.GetPosition();
-
+   
       // Check the current cell of the player 
       char currCell = grid[playerPosition->x][playerPosition->y];
 
@@ -165,7 +176,7 @@ void MapController::Update_Map(Player& player) {
          cout<<"Press X to equip item... ";
          cin>>ch;
          
-         if (ch == 'X') {
+         if (ch == 'x') {
             char item_type = chest.getType(item);
             if (item_type == 'A') {
                player.AP += item.length() * 5;
@@ -202,7 +213,7 @@ void MapController::Update_Map(Player& player) {
                player.AP = (player.AP > 100) ? player.AP-100 : 0;
             } else if (checker < 28) {
                // Cursed door with 3% chance 
-               cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)!";
+               cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)! ";
                player.HP = (player.HP > 95) ? player.HP-95 : 0; 
                player.AP = (player.AP > 500) ? player.AP-500 : 0;
                player.HP = (player.attack > 200) ? player.attack-20 : 0; 
@@ -215,7 +226,7 @@ void MapController::Update_Map(Player& player) {
         
       }
       // Delete the element from the current location 
-      grid[playerPosition->x][playerPosition->y] = '.';
+      grid[playerPosition->x][playerPosition->y] = '@';
       
       // Display the updated map 
       Display_Map(player);
@@ -224,11 +235,12 @@ void MapController::Update_Map(Player& player) {
 
 
 void MapController::console() {
-    Load_Map("");
-
    // Create a new player 
    Player player;
 
+   Load_Map("", &player);
+
+  
    bool game_over = false;
 
    Display_Map(player);

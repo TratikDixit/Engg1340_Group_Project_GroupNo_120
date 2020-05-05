@@ -1,3 +1,6 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -71,6 +74,8 @@ struct Pointer{
                 Input();
    }
 
+
+#endif
    
    
 

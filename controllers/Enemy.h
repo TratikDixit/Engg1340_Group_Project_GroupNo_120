@@ -18,8 +18,8 @@ class Enemy : public Character {
     Enemy();
     // Attacks the player if nearby 
     int x; int y; // store enemy co-ordinates
-    bool Enemy_Kill(Player*,int,int);
-    void move_enemy(int& , int & );
+    bool Enemy_Kill(Player*);
+    void move_enemy(vector<string>*);
 
 };
 

@@ -39,7 +39,7 @@ void Character::SetPosition(int x, int y) {
     P.y = y;
 }
    
-bool Character::UpdatePosition(char move, vector<string> grid) {
+bool Character::UpdatePosition(char move, vector<string> &grid) {
     int dx = 0, dy = 0;
     if (move == 'w') {
         // Move up
@@ -93,6 +93,8 @@ bool Character::UpdatePosition(char move, vector<string> grid) {
         }
 
         if (grid[updated_x][updated_y] == '.' || choice == 'y') {
+            // Reset the previous cell 
+            grid[P.x][P.y] = '.';
             // Update the position of the player 
             P.x = updated_x; 
             P.y = updated_y; 
