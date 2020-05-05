@@ -40,21 +40,27 @@ void MapController::LoadEnemies() {
    //  
 
    // The number of enemies to be loaded 
-   int num_enemies = 1; 
+   int num_enemies = 10; 
 
    for (int i = 0; i < num_enemies; i++) {
       // Create a new enemy character 
       Enemy enemy; 
-      
+       srand(0);
       // Choose a random free location for the enemy
-      int enemy_x = 2; 
-      int enemy_y = 8; 
+      
+      int enemy_x , enemy_y ;
+      do{
+          enemy_x = rand() % 70;
+          enemy_y = rand() % 70;
+       }
+      while (grid[enemy_x][enemy_y]!='.');
 
       // Update the position for the enemy 
       enemy.SetPosition(enemy_x, enemy_y);
 
       // Save the enemy 
       enemies.push_back(enemy);
+
    }
 }
 
