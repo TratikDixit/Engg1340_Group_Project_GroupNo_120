@@ -18,6 +18,9 @@ class Enemy : public Character {
     Enemy();
     // Attacks the player if nearby 
     bool Enemy_Kill(Player*);
+    void Set_Move(Player*);
+    void Make_Move(Player*);
+
 };
 
 #endif
