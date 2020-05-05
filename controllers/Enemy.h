@@ -17,9 +17,9 @@ class Enemy : public Character {
     // Constructor function
     Enemy();
     // Attacks the player if nearby 
-    bool Enemy_Kill(Player*);
-    void Set_Move(Player*);
-    void Make_Move(Player*);
+    int x; int y; // store enemy co-ordinates
+    bool Enemy_Kill(Player*,int,int);
+    void move_enemy(int& , int & );
 
 };
 
