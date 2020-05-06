@@ -10,9 +10,7 @@ using namespace std;
 class MapController {
    vector<string> grid;
    // Stores the enemies in the current map 
-   vector<Enemy> enemies; 
-   // Stores the positions that are free in the map 
-   vector<Position> free_positions; 
+   Enemy** enemies; 
    public: 
    void Load_Map(string, Player*);
    // Randomly load enemies in the map 
@@ -25,6 +23,7 @@ class MapController {
    bool CheckCell(int, int, Position*);
    void console();
 
+   int num_enemies;
 };
 
 #endif

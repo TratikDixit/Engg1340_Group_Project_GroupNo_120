@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <ctime>
+#include <algorithm>
 #include "MapController.h"
 #include "Chest.h"
 #include "game.h"
@@ -49,26 +50,27 @@ void MapController::LoadEnemies() {
    //  
 
    // The number of enemies to be loaded 
-   int num_enemies = 25; 
+   num_enemies = 25; 
+   // Initialize dynamic array of enemies
+   enemies = new Enemy*[num_enemies];
 
    for (int i = 0; i < num_enemies; i++) {
       // Create a new enemy character 
-      Enemy enemy; 
+      Enemy *enemy = new Enemy; 
       // Choose a random free location for the enemy
       int enemy_x , enemy_y ;
       //srand(time(NULL));
-      do{
-         
+      do {
          enemy_x = rand()%grid.size();
          enemy_y = rand()%grid[0].size();
-       }
+      }
       while (grid[enemy_x][enemy_y] != '.');
       // Update the position for the enemy 
-      enemy.SetPosition(enemy_x, enemy_y);
+      (*enemy).SetPosition(enemy_x, enemy_y);
       // Display the enemy 
       grid[enemy_x][enemy_y] = '&';
       // Save the enemy 
-      enemies.push_back(enemy);
+      enemies[i] = enemy;
 
    }
 }
@@ -80,8 +82,8 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
    }
 
    // Check the position of each enemy 
-   for (int i = 0; i < enemies.size(); i++) {
-      Position* enemyPosition = enemies[i].GetPosition();
+   for (int i = 0; i < num_enemies; i++) {
+      Position* enemyPosition = (*enemies[i]).GetPosition();
       if (enemyPosition->x == row && enemyPosition->y == col) {
          return true;
       }
@@ -91,8 +93,8 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
 }
 
 void MapController::Update_Enemy_Positions() {
-   for (int i = 0; i < enemies.size(); i++) {
-      enemies[i].move_enemy(&grid);
+   for (int i = 0; i < num_enemies; i++) {
+      enemies[i]->move_enemy(&grid);
    }
 }
 
@@ -102,7 +104,7 @@ void MapController::Display_Map(Player player) {
    //
 
    // Get the position of the player 
-   cout<<"\n\n\n\n\n ----- NEW TICK ---- \n\n\n\n\n";
+   system("cls");
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
    } else {
@@ -135,18 +137,54 @@ void MapController::Display_Map(Player player) {
 
 void MapController::Update_Map(Player& player) {
    // Check for collision with enemies 
-   for (int i = 0; i < enemies.size(); i++) {
-      bool isHit = enemies[i].Enemy_Kill(&player);
+   for (int i = 0; i < num_enemies; i++) {
+      bool isHit = enemies[i]->Enemy_Kill(&player);
       if (isHit) {
+         int damage = player.AttackEnemy();
          char ch;
-         cout<<"You have been hit! \nPress X to continue: ";
-         cin>>ch;
-         // Reduce the AP
-         if (player.AP > 0) {
-            player.AP = (player.AP > 50) ? player.AP-50 : 0;
+         if (damage != -1) {
+            // Reduce the hp for the player 
+            bool dead = enemies[i]->damage(damage);
+            cout<<dead;
+            // Get attacked by the enemy
+            cout<<"You have been hit! (-20P) \n";
+            
+            
+            if (player.AP > 0) {
+               player.AP = (player.AP > 20) ? player.AP-20 : 0;
+            } else {
+               player.HP = (player.HP > 20) ? player.HP-20 : 0;
+            }
+            
+            
+            if (dead == true) {
+               // Remove the enemy from the map 
+               Position* enemyPosition = enemies[i]->GetPosition();
+               grid[enemyPosition->x][enemyPosition->y] = '.';
+            
+               // Create the new array 
+               Enemy **newArray = new Enemy*[num_enemies-1];
+               // Shift the elements of the dynamic array except current
+               copy(enemies, enemies+i, newArray);
+               copy(enemies+i+1, enemies+num_enemies, newArray+i);
+
+               // Delete the old dynamic array 
+               delete[] enemies; 
+               // Reduce the number of enemies 
+               num_enemies--;
+               // Point towards the new array
+               enemies = newArray;  
+               
+               cout<<"You killed the enemy!\n";
+               break;
+            }
+            cout<<"Press X to continue: ";
+
          } else {
-            player.HP = (player.HP > 50) ? player.HP-50 : 0;
+            cout<<"You defend the attack! \nPress X to continue: ";
          }
+         cin>>ch;
+         
       }   
    }
 
@@ -186,6 +224,10 @@ void MapController::Update_Map(Player& player) {
          }        
 
       } else {
+         if (currCell == 'V') {
+            cout<<"You found the Valkryie!";
+            return ;
+         }
          if (currCell == 'H') {
             // Regenerate the health 
             player.HP = 100; 

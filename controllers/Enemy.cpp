@@ -10,8 +10,7 @@ Enemy::Enemy() {
 
     vector<string> types = {"Brute", "Mage", "Slime", "Wizard"};
     vector<string> primary_weapons = {"Sword", "Axe", "Long Sword"};
-    vector<string> secondary_weapons = {"Dagger", "Bow", "Knife", "Spells"};
-
+    HP = 50;
     name = "Enemy";
     // Choose a random level for the enemy
     enemy_level = rand()%25;
@@ -21,19 +20,29 @@ Enemy::Enemy() {
     
     // Choose random weapons for the enemy
     primary_weapon = primary_weapons[rand()%primary_weapons.size()];
-    secondary_weapon = secondary_weapons[rand()%secondary_weapons.size()];
 }
 
 
 bool Enemy::Enemy_Kill(Player* p)
 {
     Position* playerPosition = (*p).GetPosition();
-    if( (playerPosition->x-P.x==1 && playerPosition->y==P.y) ||  (P.y-playerPosition->y==1 && playerPosition->x==P.x)) // checks if enemy is other above or on right of the player
+    if( abs(playerPosition->x-P.x)<=1 && (abs(P.y-playerPosition->y)<=1))// checks if enemy is other above or on right of the player
              return true;
         
     
     return false; // no enemy in proximity
 }
+
+bool Enemy::damage(int dmg) {
+    bool dead = false;
+    if (HP <= dmg) {
+        dead = true;
+    } else {
+        HP = HP-dmg;
+    }
+    return dead;
+} 
+
 void Enemy::move_enemy(vector<string> *grid) {   
     // Stores the available moves
     vector<char> availableMoves; 
