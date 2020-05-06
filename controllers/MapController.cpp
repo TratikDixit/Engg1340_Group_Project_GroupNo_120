@@ -282,7 +282,11 @@ void MapController::console() {
 
   
    bool game_over = false;
-
+   char ch;
+   cout<<"Ten cold years have passed since I, the head of the Alisian Dynasty, was caged in this cold dungeon\n";
+   cout<<"beneath the highest mountains in Auphinid. This cold night marks my escape. FEAR.... ME....\n\n";
+   cout<<"Press X to continue... ";
+   cin>>ch;
    Display_Map(player);
    bool isDead = false;
    while (!game_over) {
@@ -296,6 +300,7 @@ void MapController::console() {
    }
 
    if (isDead) {
+      cout<<"You are dead!\n";
       cout<<"The cycle ends here. You must be better!";
    } else {
       cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!";
