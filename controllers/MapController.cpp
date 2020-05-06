@@ -34,8 +34,6 @@ void MapController::Load_Map(string level_id, Player *player) {
    Load_Maze(); 
    grid = Maze;
 
-   cout<<grid[0].size();
-
    // Load the enemies in the map 
    LoadEnemies();
 
@@ -135,7 +133,7 @@ void MapController::Display_Map(Player player) {
   
 }
 
-void MapController::Update_Map(Player& player) {
+void MapController::Update_Map(Player& player, bool &game_over) {
    // Check for collision with enemies 
    for (int i = 0; i < num_enemies; i++) {
       bool isHit = enemies[i]->Enemy_Kill(&player);
@@ -144,19 +142,7 @@ void MapController::Update_Map(Player& player) {
          char ch;
          if (damage != -1) {
             // Reduce the hp for the player 
-            bool dead = enemies[i]->damage(damage);
-            cout<<dead;
-            // Get attacked by the enemy
-            cout<<"You have been hit! (-20P) \n";
-            
-            
-            if (player.AP > 0) {
-               player.AP = (player.AP > 20) ? player.AP-20 : 0;
-            } else {
-               player.HP = (player.HP > 20) ? player.HP-20 : 0;
-            }
-            
-            
+            bool dead = enemies[i]->damage(damage);                        
             if (dead == true) {
                // Remove the enemy from the map 
                Position* enemyPosition = enemies[i]->GetPosition();
@@ -177,6 +163,17 @@ void MapController::Update_Map(Player& player) {
                
                cout<<"You killed the enemy!\n";
                break;
+            } else {
+               // Get attacked by the enemy
+               cout<<"You have been hit! (-20P) \n";
+               
+               
+               if (player.AP > 0) {
+                  player.AP = (player.AP > 20) ? player.AP-20 : 0;
+               } else {
+                  player.HP = (player.HP > 20) ? player.HP-20 : 0;
+               }
+               
             }
             cout<<"Press X to continue: ";
 
@@ -225,7 +222,8 @@ void MapController::Update_Map(Player& player) {
 
       } else {
          if (currCell == 'V') {
-            cout<<"You found the Valkryie!";
+            // End the game
+            game_over = true;
             return ;
          }
          if (currCell == 'H') {
@@ -258,7 +256,7 @@ void MapController::Update_Map(Player& player) {
                cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)! ";
                player.HP = (player.HP > 95) ? player.HP-95 : 0; 
                player.AP = (player.AP > 500) ? player.AP-500 : 0;
-               player.HP = (player.attack > 200) ? player.attack-20 : 0; 
+               player.HP = (player.attack > 200) ? player.attack-200 : 0; 
             }
             char ch;
             cout<<"Press X to continue... ";
@@ -286,16 +284,22 @@ void MapController::console() {
    bool game_over = false;
 
    Display_Map(player);
-
+   bool isDead = false;
    while (!game_over) {
       // check if the player can be killed by the enemy
       if (player.HP == 0) {
-         cout<<"You are dead!";
+         isDead = true;
          game_over = true;
       } else {
-         Update_Map(player);
+         Update_Map(player, game_over);
       }
-   }   
+   }
+
+   if (isDead) {
+      cout<<"The cycle ends here. You must be better!";
+   } else {
+      cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!";
+   }
 }
 int main()
 {

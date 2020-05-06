@@ -87,6 +87,8 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
                 HP = 100; 
             } else if (cell == '~') {
                 cout<<"Wade through water (-10HP)? ";
+            } else if (cell == 'V') {
+                cout<<"Open the gates of the dungeon? ";
             }
             cout<<"(y/n): ";
             cin>>choice;
