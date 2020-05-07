@@ -13,12 +13,18 @@ struct Pointer{
 };
 static vector<string> Maze;
 
+
    static Pointer P; // Since there was no @ in the map put this maybe we can use 1,2 for all levels
     
    inline void Load_Maze()
    {
-    fstream file;
-    string filename = "../data/levels/level1.txt";                      //I have only written it for 1 level rn Ill add more as they come
+    //function stores the .txt maze file as a vector
+    // using file i/o stream
+     
+       fstream file;
+
+       string filename = "../data/levels/level1.txt";                      //I have only written it for 1 level rn Ill add more as they come
+    
     file.open(filename.c_str());
     string line="";
     if (file.is_open())
@@ -31,6 +37,7 @@ static vector<string> Maze;
 
    inline bool isValid(char move)
    {
+       // check if the input is valid
        string w= "ewud";
        Pointer arr[4]= {{0,1},{0,-1},{-1,0},{1,0}};
        if(w.find(move)!=-1)
@@ -50,6 +57,7 @@ static vector<string> Maze;
    
    inline char Input()
    {
+       // takes the input
               bool check = true;
               while(check){    
               char m;
