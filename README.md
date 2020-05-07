@@ -72,13 +72,17 @@ No non standard libraries are used.
 It is very easy to build and compile our game. One can use different methods stated below to do so.
 ### Shell Script (Recommended)
 We have included a shell script in our game folder which the users can execute in order to play the game. The shell script automatically builds and executes the game. 
+
 ```bash
 ./play.sh
 ```
+
 ### MakeFile 
 Users can run the *make* command to build the executable for our game and play then run the executable to play the game. 
+
 ```bash
-make makefile
+cd controllers
+make game_controller
 ./game_controller
 ```
  
