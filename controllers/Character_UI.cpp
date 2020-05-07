@@ -1,5 +1,7 @@
 #include <iostream>
+
 #include "Character_UI.h"
+
 #include "Chest.h"
 
 using namespace std;
@@ -7,20 +9,24 @@ using namespace std;
 
 // Constructor function
 Character::Character() {
-    name = "Anonymous"; 
 
+    name = "Anonymous";   // default name for player
+
+    
     // Initialize the stats of the character
     HP = 100; 
     AP = 100; 
 
+    
     // Initialize the starting position of the player 
     P.x = 1;
     P.y = 5; 
 }
      
 void Character::store_name(){
-    string name;
-    cout<<"\nEnter the Character name : ";
+    
+    string name;                              // stores the name of the character
+    cout<<"\nEnter the Character name : ";    
     cin>> name;
 }
 
@@ -41,8 +47,11 @@ void Character::SetPosition(int x, int y) {
    
 bool Character::UpdatePosition(char move, vector<string> &grid) {
     int dx = 0, dy = 0;
-    if (move == 'w') {
-        // Move up
+    
+    if (move == 'w') {                    // updates the position of the player 
+                                         //based on input
+        // Move up                        
+                      
         dx = -1;
         dy = 0;
     } else if (move == 's') {
@@ -56,7 +65,7 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
     } else if (move == 'd') {
         // Move right
         dx = 0;
-        dy = 1;
+        dy = 1;                                  
     }
 
     int updated_x = P.x+dx; 
@@ -95,12 +104,17 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
         }
 
         if (grid[updated_x][updated_y] == '.' || choice == 'y') {
+            
             // Reset the previous cell 
-            grid[P.x][P.y] = '.';
+            
+             grid[P.x][P.y] = '.';
             // Update the position of the player 
+             
             P.x = updated_x; 
             P.y = updated_y; 
+            
             // Update the current tick 
+            
             updateTick = true;
         }
     }
@@ -109,6 +123,7 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
 }
 
 string Character::GetType() {
+    
     return type;
 }
 
