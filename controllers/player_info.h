@@ -1,5 +1,8 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef PLAYER_INFO
+#define PLAYER_INFO
+
+
+
 
 #include "Character_UI.h"
 
