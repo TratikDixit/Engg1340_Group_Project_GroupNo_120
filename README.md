@@ -39,7 +39,7 @@ All the enemies are generated randomly. The enemies have mild intelligence, i.e 
 	Enemy* newEnemy = new Enemy; 
 	enemies[SIZE++] = newEnemies;
 	```
-	### Removing an enemy 
+	#### Removing an enemy 
 	```cpp
 	delete[] enemies;
 	Enemy** newArray = new Enemy* [SIZE-1];
