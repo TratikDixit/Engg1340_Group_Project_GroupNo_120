@@ -32,7 +32,7 @@ All the enemies are generated randomly. The enemies have mild intelligence, i.e 
 	This entire process is shown below:
 	#### Creating a dynamic array		
 	```cpp
-	Enemy** enemies = new Enemy* [SIZE]; // Dynamic array for enemies 
+	Enemy** enemies = new Enemy* [SIZE];
 	```
 	#### Create new enemies
 	```cpp
