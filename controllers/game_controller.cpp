@@ -4,10 +4,13 @@
 #include "../screens/achievement.h"
 #include "../screens/instruction.h"
 
+
 #include "game_controller.h"
 #include "player_info.h"
 
+
 using namespace std;
+
 
 void game_controller::Play_Game()
 {
@@ -20,7 +23,7 @@ void game_controller::Play_Game()
              // first instructions to the game 
                print_instruction();
         
-            MapController M;         
+               MapController M;         
                M.console();
          
              // once game is over
@@ -57,6 +60,8 @@ void game_controller::Play_Game()
 int main()
 {
       game_controller g ;
-      g.Play_Game();
-      return 0;
+   
+        g.Play_Game();
+      
+        return 0;
 }
