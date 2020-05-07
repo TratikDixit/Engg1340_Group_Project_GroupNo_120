@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void game_controller::Play_Game()d
+void game_controller::Play_Game()
 {
         int choice  = display_screen();
         // this the very first screen displays the basic stuff
