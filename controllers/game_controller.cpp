@@ -4,14 +4,12 @@
 #include "../screens/achievement.h"
 #include "../screens/instruction.h"
 
-
 #include "game_controller.h"
-#include "MapController.h"
 #include "player_info.h"
 
 using namespace std;
 
-void game_controller::Play_Game()
+void game_controller::Play_Game()d
 {
         int choice  = display_screen();
         // this the very first screen displays the basic stuff
@@ -23,7 +21,7 @@ void game_controller::Play_Game()
                print_instruction();
         
             MapController M;         
-             M.console();
+               M.console();
          
              // once game is over
               string player_name = "";
@@ -59,6 +57,6 @@ void game_controller::Play_Game()
 int main()
 {
       game_controller g ;
-     g.Play_Game();
+      g.Play_Game();
       return 0;
 }

@@ -17,7 +17,6 @@ class MapController {
    void LoadEnemies();
    void Display_Map(Player); 
    void Update_Map(Player&, bool&); 
-   void ChangeFont(int);
    void Update_Enemy_Positions();
    // Checks if a given cell is occupied or not
    bool CheckCell(int, int, Position*);

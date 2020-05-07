@@ -53,7 +53,7 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
         // Move left
         dx = 0;
         dy = -1;
-    } else {
+    } else if (move == 'd') {
         // Move right
         dx = 0;
         dy = 1;

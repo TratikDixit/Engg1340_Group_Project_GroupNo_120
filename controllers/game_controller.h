@@ -3,7 +3,6 @@
 
 #include "MapController.h"
 
-
 using namespace std;
 
 class game_controller {

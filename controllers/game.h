@@ -7,16 +7,15 @@
 #include <vector>
 using namespace std;
 
-
 struct Pointer{
     int x;           // stores x and y co-ordinates
      int y;                                           
 };
+static vector<string> Maze;
 
-   vector <string> Maze;
-   Pointer P = {0,1}; // Since there was no @ in the map put this maybe we can use 1,2 for all levels
+   static Pointer P; // Since there was no @ in the map put this maybe we can use 1,2 for all levels
     
-   void Load_Maze()
+   inline void Load_Maze()
    {
     fstream file;
     string filename = "../data/levels/level1.txt";                      //I have only written it for 1 level rn Ill add more as they come
@@ -30,7 +29,7 @@ struct Pointer{
      
    }
 
-   bool isValid(char move)
+   inline bool isValid(char move)
    {
        string w= "ewud";
        Pointer arr[4]= {{0,1},{0,-1},{-1,0},{1,0}};
@@ -49,7 +48,7 @@ struct Pointer{
        return false;
    }
    
-   char Input()
+   inline char Input()
    {
               bool check = true;
               while(check){    
@@ -64,7 +63,7 @@ struct Pointer{
               
    }
    
-    void Start_Game()       
+    inline void Start_Game()       
    {
         bool game_over = false; 
         

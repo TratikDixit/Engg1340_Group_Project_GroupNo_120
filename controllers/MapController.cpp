@@ -306,9 +306,4 @@ void MapController::console() {
       cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!";
    }
 }
-int main()
-{
-MapController c;
-c.console();
-return 0;
-}
+
