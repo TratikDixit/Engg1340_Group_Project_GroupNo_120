@@ -162,8 +162,7 @@ void MapController::Update_Map(Player& player, bool &game_over) {
                num_enemies--;
                // Point towards the new array
                enemies = newArray;  
-               // Delete the new array 
-               delete[] newArray;            
+               
                cout<<"You killed the enemy!\n";
                break;
             } else {
