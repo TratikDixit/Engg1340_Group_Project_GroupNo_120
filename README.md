@@ -37,15 +37,15 @@ All the enemies are generated randomly. The enemies have mild intelligence, i.e 
 	#### Create new enemies
 	```cpp
 	Enemy* newEnemy = new Enemy; 
-	enemies[SIZE++] = newEnemies;
+	enemies[CURR_SIZE++] = newEnemies;
 	```
 	#### Removing an enemy 
 	```cpp
 	delete[] enemies;
-	Enemy** newArray = new Enemy* [SIZE-1];
+	Enemy** newArray = new Enemy* [--CURR_SIZE];
 	std::copy(enemies, enemies+idx, newArray);
-	std::copy(enemies+idx+1, enemies+size, newArray); 
-	enemies = newArray; 
+	std::copy(enemies+idx+1, enemies+CURR_SIZE, newArray); 
+	enemies = newArray;
 	```
 ### File input/output (e.g., for loading/saving game status)
 
