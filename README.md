@@ -6,7 +6,7 @@ Players have to navigate through a maze-like dungeon while fighting enemies in o
 ## Developers
 ### Tratik Dixit
 UID : 3035660770
-GitHub Username : [Tratik Dixit](https://github.com/TratikDixit)
+GitHub Username : [TratikDixit](https://github.com/TratikDixit)
 ### Yashwardhann Kumar 
 UID: 3035662699
 GitHub Username : [YashWardhann](https://github.com/YashWardhann)
