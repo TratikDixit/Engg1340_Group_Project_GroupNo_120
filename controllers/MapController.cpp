@@ -9,6 +9,8 @@
 #include "MapController.h"
 #include "Chest.h"
 #include "game.h"
+#include "player_info.h"
+
 
 using namespace std;
 
