@@ -1,3 +1,9 @@
+
 High Scores
 
-Player Name                   Player Score
+
+Player Name                   Player Moves Made
+
+Anonymous                        567
+
+Lone_Ranger                      921
