@@ -22,13 +22,15 @@ int min(int a, int b) {
 
    return (a > b) ? b : a;
 
-}
+}  
+// to return the minimum of a and b
 
 int max(int a, int b) {
 
    return (a > b) ? a : b;
 
 }
+// to return the maximum of a and b
 
 void MapController::Load_Map(string level_id, Player *player) {
    // 
@@ -36,17 +38,21 @@ void MapController::Load_Map(string level_id, Player *player) {
    //
    
    // Stores the path of the folder containing the levels
+   
    string BASE_PATH = "../data/levels/level1.txt";
    
    // current_maze = Load_Maze(BASE_PATH+level_id); - this is how we should load the maze 
    // Load the grid from the file
+   
    Load_Maze(); 
    grid = Maze;
 
    // Load the enemies in the map 
+   
    LoadEnemies();
 
    // Initialize the position of the player
+   
    Position *playerPosition = (*player).GetPosition();
    grid[playerPosition->x][playerPosition->y] = '@';
 }
@@ -57,8 +63,11 @@ void MapController::LoadEnemies() {
    //  
 
    // The number of enemies to be loaded 
+   
    num_enemies = 25; 
+   
    // Initialize dynamic array of enemies
+  
    enemies = new Enemy*[num_enemies];
 
    for (int i = 0; i < num_enemies; i++) {
@@ -75,6 +84,8 @@ void MapController::LoadEnemies() {
       }
       
       while (grid[enemy_x][enemy_y] != '.');
+      // to ensure that the enemy is set in a free location
+      
       // Update the position for the enemy 
       
       (*enemy).SetPosition(enemy_x, enemy_y);
@@ -91,6 +102,7 @@ void MapController::LoadEnemies() {
 bool MapController::CheckCell(int row, int col, Position* playerPosition) {
    
    // Check if the player is at the cell 
+   
    if (row == playerPosition->x && col == playerPosition->y) {
       return true;
    }
@@ -100,7 +112,8 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
       
       Position* enemyPosition = (*enemies[i]).GetPosition();
    
-      if (enemyPosition->x == row && enemyPosition->y == col) {
+      if (enemyPosition->x == row && enemyPosition->y == col) 
+      {
          return true;
       }
    }
@@ -110,7 +123,8 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
 
 void MapController::Update_Enemy_Positions() {
    
-   for (int i = 0; i < num_enemies; i++) {
+   for (int i = 0; i < num_enemies; i++) 
+   {
       enemies[i]->move_enemy(&grid);
    }
 
@@ -126,7 +140,8 @@ void MapController::Display_Map(Player player) {
 
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
-   } else {
+   } 
+     else {
       
       // Defines the size of the region the player can see
    
@@ -154,6 +169,7 @@ void MapController::Display_Map(Player player) {
    }
 
    // Display the health and armour points of the player
+   
    cout<<"HP: "<<player.HP<<" AP: "<<player.AP<<" Attack: "<<player.attack<<"\n";
   
 }
@@ -199,8 +215,11 @@ void MapController::Update_Map(Player& player, bool &game_over) {
                enemies = newArray;  
                
                cout<<"You killed the enemy!\n";
+   
                break;
-            } else {
+            } 
+            else 
+            {
                // Get attacked by the enemy
                
                
@@ -217,7 +236,9 @@ void MapController::Update_Map(Player& player, bool &game_over) {
             }
             cout<<"Press X to continue: ";
 
-         } else {
+         } 
+         else 
+         {
             cout<<"You defend the attack! \nPress X to continue: ";
          }
          cin>>ch;
@@ -289,17 +310,20 @@ void MapController::Update_Map(Player& player, bool &game_over) {
             int checker = rand()%101;          
             
             if (checker < 20) {
+               
                // Spider bite with 20% chance
                cout<<"You were bit by a spider (-25HP)! ";
                player.HP = (player.HP > 20) ? player.HP-20 : 0;
             } 
             else if (checker < 25) {
+               
                // Boulder fall with 5% chance
                cout<<"A boulder fell on you (-50HP, -100AP)! ";
                player.HP = (player.HP > 50) ? player.HP-50 : 0; 
                player.AP = (player.AP > 100) ? player.AP-100 : 0;
             } 
             else if (checker < 28) {
+               
                // Cursed door with 3% chance 
                cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)! ";
                player.HP = (player.HP > 95) ? player.HP-95 : 0; 
