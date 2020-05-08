@@ -89,7 +89,7 @@ make game_controller
  Your programs including Makefile and source files (.h / .cpp / .c)
  
  ## Gameplay Video
-A video (at most 3 minutes long) demonstrating a gameplay and the implemented features of your program.
+ Link to view the video
+https://drive.google.com/file/d/1QP9nXncSVSkpCSHa8eSzjQJ91Kgt9LLi/view?usp=sharing 
  
- 
-Hand in a link to the repo to Moodle.
+
