@@ -136,8 +136,8 @@ void MapController::Display_Map(Player player) {
    //
 
    // Get the position of the player 
-   system("cls");
-
+   cout << "\033[2J\033[1;1H";
+   
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
    } 
@@ -359,6 +359,8 @@ void MapController::console() {
    cout<<"beneath the highest mountains in Auphinid. This cold night marks my escape. FEAR.... ME....\n\n";
    cout<<"Press X to continue... ";
    cin>>ch;
+
+   srand(time(NULL));
    
    Display_Map(player);
    bool isDead = false;
@@ -377,7 +379,7 @@ void MapController::console() {
       cout<<"You are dead!\n";
       cout<<"The cycle ends here. You must be better!";
    } else {
-      cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!";
+      cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!\n";
    }
 }
 

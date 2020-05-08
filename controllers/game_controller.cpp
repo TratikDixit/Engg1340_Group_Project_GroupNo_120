@@ -59,9 +59,8 @@ void game_controller::Play_Game()
 
 int main()
 {
-      game_controller g ;
-   
-        g.Play_Game();
-      
-        return 0;
+   cout << "\033[2J\033[1;1H";
+   game_controller g;
+   g.Play_Game();
+   return 0;
 }

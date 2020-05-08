@@ -15,7 +15,7 @@ Character::Character() {
     
     // Initialize the stats of the character
     HP = 100; 
-    AP = 100; 
+    AP = 0; 
 
     
     // Initialize the starting position of the player 

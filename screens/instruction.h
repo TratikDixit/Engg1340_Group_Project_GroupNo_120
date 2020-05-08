@@ -5,7 +5,7 @@ using namespace std;
 void print_instruction() 
 {
 
-    string ins = "INSTRUCTION MANUAL"
+    string ins = "\n\n-------- INSTRUCTION MANUAL ------------"
         "\n"
         "\n"
         "\n"
@@ -17,13 +17,13 @@ void print_instruction()
         
         "Keys for movement: "
         
-        "d to move right"
+        "d to move right, "
         
-        "w to move up"
+        "w to move up, "
         
-        "s to move down"
+        "s to move down, "
         
-        "a to move left"
+        "a to move left, "
         
         "Enjoy the game!"
         ;
