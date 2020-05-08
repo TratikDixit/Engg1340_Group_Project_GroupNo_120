@@ -1,5 +1,5 @@
 
-# Eye of Odin - An ASCII Rougelike
+# Eye of Zodiac  ~  An ASCII Rougelike
 This is a text based adventure game. Incorporates  the elements of classic roguelike games.
 Players have to navigate through a maze-like dungeon while fighting enemies in order to escape. Random items such as Weapons, Armour and Health Potions can be found at different locations in the map assisting the player in their adventure!
 
@@ -70,6 +70,7 @@ No non standard libraries are used.
 ## Compilation and execution instructions
 
 It is very easy to build and compile our game. One can use different methods stated below to do so.
+
 ### Shell Script (Recommended)
 We have included a shell script in our game folder which the users can execute in order to play the game. The shell script automatically builds and executes the game. 
 
@@ -89,6 +90,7 @@ make game_controller
  Your programs including Makefile and source files (.h / .cpp / .c)
  
  ## Gameplay Video
+ 
  Link to view the video
 https://drive.google.com/file/d/1QP9nXncSVSkpCSHa8eSzjQJ91Kgt9LLi/view?usp=sharing 
  
