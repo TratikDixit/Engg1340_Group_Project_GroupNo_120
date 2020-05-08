@@ -136,7 +136,7 @@ void MapController::Display_Map(Player player) {
    //
 
    // Get the position of the player 
-   system("cls");
+   system("clear");
 
    if (!grid.size()) { 
       cout<<"Error: Map is empty"; 
