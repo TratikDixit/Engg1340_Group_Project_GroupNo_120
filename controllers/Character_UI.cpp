@@ -6,6 +6,10 @@
 
 using namespace std;
 
+//This file deals with the management of chest 
+//and integrates the treasure with the health 
+// scores
+
 
 // Constructor function
 Character::Character() {
@@ -30,22 +34,30 @@ void Character::store_name(){
     cin>> name;
 }
 
-string Character::GetName() {
+string Character::GetName() 
+{
     return name; 
 }
 
-Position* Character::GetPosition() {
+Position* Character::GetPosition() 
+{
     // Point to the position of the character
     Position* pos = &P; 
     return pos;
 }
 
-void Character::SetPosition(int x, int y) {
+void Character::SetPosition(int x, int y)
+{
     P.x = x; 
     P.y = y;
 }
-   
-bool Character::UpdatePosition(char move, vector<string> &grid) {
+
+
+// updates the the plaayer position to given x and y
+
+
+bool Character::UpdatePosition(char move, vector<string> &grid) 
+{
     int dx = 0, dy = 0;
     
     if (move == 'w') {                    // updates the position of the player 
@@ -54,15 +66,18 @@ bool Character::UpdatePosition(char move, vector<string> &grid) {
                       
         dx = -1;
         dy = 0;
-    } else if (move == 's') {
+    } else if (move == 's') 
+    {
         // Move down
         dx = 1;
         dy = 0;
-    } else if (move == 'a') {
+    } else if (move == 'a') 
+    {
         // Move left
         dx = 0;
         dy = -1;
-    } else if (move == 'd') {
+    } else if (move == 'd') 
+    {
         // Move right
         dx = 0;
         dy = 1;                                  

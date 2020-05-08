@@ -25,8 +25,9 @@ void print_instruction()
         
         "a to move left, "
         
-        "Enjoy the game!"
-        ;
+        "Your job is to find the V that allows you to exit the maze"
+        
+        "May the odds be in your favour!";
     
     // we can add stuff
     

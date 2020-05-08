@@ -7,6 +7,10 @@
 
 using namespace std;
 
+// the header file is responsible for printing
+// and adding the current achievements
+// to the achievements.txt
+
 void print_achievement_file() 
 { 
        string x="";
