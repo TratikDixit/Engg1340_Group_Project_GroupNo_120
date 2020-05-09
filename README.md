@@ -99,8 +99,6 @@ g++ -o play game_controller.cpp MapController.cpp Chest.cpp Enemy.cpp Character_
 ./play
 ```
  
- Your programs including Makefile and source files (.h / .cpp / .c)
- 
  ## Gameplay Video
  
  Link to view the video
