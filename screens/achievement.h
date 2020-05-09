@@ -15,20 +15,23 @@ void print_achievement_file()
 { 
        string x="";
        ifstream fin;
-       fin.open("achievements.txt", ios::app);   // to call the record of achievements
+       fin.open("achievements.txt");   // to call the record of achievements
 
        if (fin.fail()) {
 		cout << "Error in file opening!" << endl;   
   		exit(1);                                // precautionary in case the file cannot be opened
        }
-        while (fin>>x) 
-	{
- 		cout<<x<<endl;
+	
+    	string line = "";
+
+	while ( getline(fin, line) ) {
+		cout << line << endl;
  	}
 
-	fin.close();     
+
+	fin.close();     // closing the stream object
   return;
-}    
+}    // end of function
 
 void add_achievement(string player_name, int score)
 {
@@ -36,10 +39,16 @@ void add_achievement(string player_name, int score)
 	
 	// write the achievements to player
     
-    ofstream MyFile("achievements.txt");
+    ofstream MyFile("achievements.txt", ios::app);  
+	// to append the files
 	
      MyFile <<result;
+	// store the player name
+	
      MyFile.close(); 
-     return;
+     
+	return;
     
-}
+} // end of function
+
+//end of header
