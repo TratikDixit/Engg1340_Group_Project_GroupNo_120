@@ -13,6 +13,16 @@ using namespace std;
 
 
 Chest::Chest(char type) {
+
+    /*
+    * Default constructor for the chest  class
+    * 
+    * @param type of the chest
+    * 
+    * @return none but mutates class properties 
+    *  
+    */
+    
     if (type == 'C') {
         // Initialize chest with default items
         items = {"Celestia, Might of the Dead (Rare)", "Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe","Iron Axe", "Long Sword","Long Sword","Long Sword", "Crucifix Battleaxe (Rare)", "Golden Dagger", "Wooden Bow", "Knife","Steel Knife","Steel Knife","Iron Knife","Mighty Knife", "Phantomsong, Bauble of Illuminated Dreams (Rare)", "Sword", "Wooden Spear", "Iron Battle Hammer", "Iron Battle Hammer", "Iron Battle Hammer", "Iron Battle Hammer", "Blackplate", "Helmet of Odin", "Armor of Endless Souls", "Ivory Chestguard of Lost Glory", "Scaled Tunic of Haunted Sorrow", "Chestpiece", "Helmet", "Robe", "Cloak", "Boots", "Leather Robe", "Leather Helmet", "Steel Breastplate of Condemned Might"};
@@ -28,14 +38,30 @@ Chest::Chest(char type) {
 }
 
 string Chest::open() {
-    // Initialize the items in the chest
-    
+    /*
+    * Selects a random item from the chest 
+    * 
+    * @param none
+    * 
+    * @return none but mutates properties 
+    *  
+    */
+
     // Choose a random item
     string item = items[rand()%items.size()];
     return item;
 }
 
 char Chest::getType(string item) {
+    /*
+    * Returns the type of the item opened by player
+    * 
+    * @param name of the item opened
+    * 
+    * @return type of the item opened
+    *  
+    */
+
     // Check if the item is weapon
     if (chest_type == 'W' || chest_type == 'A') {
         return chest_type;

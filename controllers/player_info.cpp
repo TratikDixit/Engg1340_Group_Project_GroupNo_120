@@ -8,11 +8,30 @@
 #include <ctype.h>
 
 Player::Player() {
+    /*
+    * Default constructor for the player class
+    * 
+    * @param none
+    * 
+    * @return none but mutates properties 
+    *  
+    */
+
     // Initialize the attack damage 
     attack = 20;
 }
 
 int Player::AttackEnemy() {
+   /*
+    * Displays the interactive combat screen
+    * for the player and calculates damage
+    * 
+    * @param none
+    * 
+    * @return none 
+    *  
+    */
+
     int attackType;
     // Stores the probabilities of successful move
     int probabilites[] = {100, 85, 60, 40, 65};

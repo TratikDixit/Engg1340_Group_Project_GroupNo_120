@@ -4,6 +4,14 @@ using namespace std;
 
 void print_instruction() 
 {
+    /*
+    * Prints the instructions of the game
+    * 
+    * @param none
+    * 
+    * @return none
+    *  
+    */
 
     string ins = "\n\n-------- INSTRUCTION MANUAL ------------"
         "\n"
@@ -28,9 +36,7 @@ void print_instruction()
         "Your job is to find the V that allows you to exit the maze\n"
         
         "May the odds be in your favour!";
-    
-    // we can add stuff
-    
+      
   cout<<ins<<"\n\n\n";
-    return;
+  return;
 }

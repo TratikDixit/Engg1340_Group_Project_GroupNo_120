@@ -7,7 +7,14 @@
 
 
 Enemy::Enemy() {
-
+    /*
+    * Default constructor for the enemy class
+    * 
+    * @param none
+    * 
+    * @return none but mutates properties 
+    *  
+    */
     vector<string> types = {"Brute", "Mage", "Slime", "Wizard"};
     vector<string> primary_weapons = {"Sword", "Axe", "Long Sword"};
     HP = 50;
@@ -25,15 +32,33 @@ Enemy::Enemy() {
 
 bool Enemy::Enemy_Kill(Player* p)
 {
+    /*
+    * Checks wheather the player is in the vicinity 
+    * of the enemy
+    * 
+    * @param a pointer to the object of the player
+    * 
+    * @return boolean signifying if the player is 
+    * in proximity 
+    *  
+    */
+
     Position* playerPosition = (*p).GetPosition();
     if( abs(playerPosition->x-P.x)<=1 && (abs(P.y-playerPosition->y)<=1))// checks if enemy is other above or on right of the player
-             return true;
-        
+             return true;       
     
     return false; // no enemy in proximity
 }
 
 bool Enemy::damage(int dmg) {
+    /*
+    * Damages the enemy and reduces its HP
+    * 
+    * @param the amount of damage dealt to the enemy
+    * 
+    * @return boolean checking if the enemy is dead
+    *  
+    */
     bool dead = false;
     if (HP <= dmg) {
         dead = true;
@@ -44,11 +69,21 @@ bool Enemy::damage(int dmg) {
 } 
 
 void Enemy::move_enemy(vector<string> *grid) {   
+    /*
+    * Updates the position of the enemy
+    * 
+    * @param pointer to the grid of the map
+    * 
+    * @return none but mutates the grid inside
+    *  
+    */
+
     // Stores the available moves
     vector<char> availableMoves; 
     // Reset the previous cell 
     (*grid)[P.x][P.y] = '.';
 
+    // Get all the possible moves
     if(P.x > 0 && (*grid)[P.x-1][P.y]=='.') {
         availableMoves.push_back('w');
     }
@@ -67,7 +102,7 @@ void Enemy::move_enemy(vector<string> *grid) {
         int index = rand()%availableMoves.size();
         char move = availableMoves[index];
     
-
+        // Update the position of the enemy
         switch (move) {
             case 'w':
                 P.x--;

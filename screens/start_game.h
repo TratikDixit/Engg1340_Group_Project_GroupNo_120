@@ -5,6 +5,16 @@ using namespace std;
 
 int display_screen()
 {
+
+  /*
+  * Displays the title screen of the game
+  * 
+  * @param none
+  * 
+  * @return the choice of the player
+  *  
+  */
+
   // Clear the initial screen
   system("clear");
  string intro = "\n\n"   

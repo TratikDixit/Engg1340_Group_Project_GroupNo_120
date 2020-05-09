@@ -13,6 +13,14 @@ using namespace std;
 
 // Constructor function
 Character::Character() {
+    /*
+    * Default constructor for the character class
+    * 
+    * @param none
+    * 
+    * @return none but mutates properties 
+    *  
+    */
 
     name = "Anonymous";   // default name for player
 
@@ -28,6 +36,14 @@ Character::Character() {
 }
      
 void Character::store_name(){
+    /*
+    * Changes the name for the character
+    * 
+    * @param none
+    * 
+    * @return none but mutates properties 
+    *  
+    */
     
     string name;                              // stores the name of the character
     cout<<"\nEnter the Character name : ";    
@@ -36,11 +52,29 @@ void Character::store_name(){
 
 string Character::GetName() 
 {
+    /*
+    * Returns the name of the character
+    * 
+    * @param none
+    * 
+    * @return the name of the character 
+    *  
+    */
     return name; 
 }
 
 Position* Character::GetPosition() 
 {
+    /*
+    * Returns the position of the character
+    * 
+    * @param none
+    * 
+    * @return pointer to the position of the enemy 
+    * in order to increase optimization
+    *  
+    */
+
     // Point to the position of the character
     Position* pos = &P; 
     return pos;
@@ -48,6 +82,14 @@ Position* Character::GetPosition()
 
 void Character::SetPosition(int x, int y)
 {
+    /*
+    * Alters the position of the character
+    * 
+    * @param the new position of the character
+    * 
+    * @return none but mutates properties 
+    *  
+    */
     P.x = x; 
     P.y = y;
 }
@@ -58,26 +100,31 @@ void Character::SetPosition(int x, int y)
 
 bool Character::UpdatePosition(char move, vector<string> &grid) 
 {
+    /*
+    * Updates the position of the character
+    * 
+    * @param the move choosen by the character and a reference 
+    * to the grid of the current level
+    * 
+    * @return boolean signifying if the current tick should be 
+    * updated  
+    *  
+    */
     int dx = 0, dy = 0;
     
-    if (move == 'w') {                    // updates the position of the player 
-                                         //based on input
-        // Move up                        
-                      
+    if (move == 'w') {                    // updates the position of the player
+    // Move up                        
         dx = -1;
         dy = 0;
-    } else if (move == 's') 
-    {
+    } else if (move == 's') {
         // Move down
         dx = 1;
         dy = 0;
-    } else if (move == 'a') 
-    {
+    } else if (move == 'a') {
         // Move left
         dx = 0;
         dy = -1;
-    } else if (move == 'd') 
-    {
+    } else if (move == 'd') {
         // Move right
         dx = 0;
         dy = 1;                                  
@@ -136,6 +183,14 @@ bool Character::UpdatePosition(char move, vector<string> &grid)
 }
 
 string Character::GetType() {
+    /*
+    * Returns the type of the character
+    * 
+    * @param none
+    * 
+    * @return type of the player
+    *  
+    */
     
     return type;
 }

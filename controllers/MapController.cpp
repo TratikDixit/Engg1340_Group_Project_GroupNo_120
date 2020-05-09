@@ -33,9 +33,16 @@ int max(int a, int b) {
 // to return the maximum of a and b
 
 void MapController::Load_Map(string level_id, Player *player) {
-   // 
-   // - Loads the 2d array of the maze
-   //
+   /*
+    * Load a given level of the game
+    * 
+    * @param the id of the level by which the map
+    * can be identified in the levels folder and a 
+    * pointer to the object of the player
+    * 
+    * @return none 
+    *  
+    */
    
    // Stores the path of the folder containing the levels
    
@@ -58,16 +65,19 @@ void MapController::Load_Map(string level_id, Player *player) {
 }
 
 void MapController::LoadEnemies() {
-   // 
-   // - Loads the different enemy characters  
-   //  
+   /*
+    * Loads the different enemy characters   
+    * 
+    * @param none
+    * 
+    * @return none but mutates the vector of
+    * enemies inside
+    */
 
-   // The number of enemies to be loaded 
-   
+   // The number of enemies to be loaded    
    num_enemies = 28; 
    
-   // Initialize dynamic array of enemies
-  
+   // Initialize dynamic array of enemies  
    enemies = new Enemy*[num_enemies];
 
    for (int i = 0; i < num_enemies; i++) {
@@ -100,9 +110,17 @@ void MapController::LoadEnemies() {
 }
 
 bool MapController::CheckCell(int row, int col, Position* playerPosition) {
+   /*
+    * Checks wheather a given cell is occupied or not
+    * 
+    * @param the row & column of the cell and a pointer 
+    * to the pointer of the player
+    * 
+    * @return none 
+    *  
+    */
    
-   // Check if the player is at the cell 
-   
+   // Check if the player is at the cell    
    if (row == playerPosition->x && col == playerPosition->y) {
       return true;
    }
@@ -123,6 +141,15 @@ bool MapController::CheckCell(int row, int col, Position* playerPosition) {
 
 void MapController::Update_Enemy_Positions() {
    
+   /*
+    * Function to control the map controller 
+    * 
+    * @param none 
+    * 
+    * @return none 
+    *  
+    */
+   
    for (int i = 0; i < num_enemies; i++) 
    {
       enemies[i]->move_enemy(&grid);
@@ -131,9 +158,14 @@ void MapController::Update_Enemy_Positions() {
 }
 
 void MapController::Display_Map(Player player) {
-   //
-   // - Displays the map of the current level
-   //
+   /*
+    * Displays the map at every tick
+    * 
+    * @param object of the player 
+    * 
+    * @return none 
+    *  
+    */
 
    // Get the position of the player 
    cout << "\033[2J\033[1;1H";
@@ -160,26 +192,32 @@ void MapController::Display_Map(Player player) {
       
       for (int i = row_minBound; i < row_maxBound; i++) {
          for (int j  = col_minBound; j < col_maxBound; j++) {  
-            // Check if the grid cell is occupied 
-            //bool isOccupied = CheckCell(i, j, playerPosition); 
             cout<<grid[i][j];        
          }
          cout<<endl;
       }
    }
 
-   // Display the health and armour points of the player
-   
+   // Display the health and armour points of the player   
    cout<<"HP: "<<player.HP<<" AP: "<<player.AP<<" Attack: "<<player.attack<<"\n";
   
 }
 
 void MapController::Update_Map(Player& player, bool &game_over) {
-   
+
+   /*
+    * Updates the map on every tick
+    * 
+    * @param reference of player and reference of game over 
+    * checker 
+    * 
+    * @return none but changed values of params inside 
+    * the function 
+    */
+
    // Check for collision with enemies 
-   
    for (int i = 0; i < num_enemies; i++) {
-   
+      
       bool isHit = enemies[i]->Enemy_Kill(&player);
       
       if (isHit) {
@@ -347,6 +385,17 @@ void MapController::Update_Map(Player& player, bool &game_over) {
 
 
 void MapController::console() {
+
+   /*
+    * Function to control the map controller 
+    * 
+    * @param none 
+    * 
+    * @return none 
+    *  
+    */
+   
+
    // Create a new player 
    Player player;
 
