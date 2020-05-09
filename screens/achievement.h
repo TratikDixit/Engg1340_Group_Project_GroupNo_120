@@ -15,7 +15,7 @@ void print_achievement_file()
 { 
        string x="";
        ifstream fin;
-       fin.open("achievements.txt");   // to call the record of achievements
+       fin.open("achievements.txt", ios::app);   // to call the record of achievements
 
        if (fin.fail()) {
 		cout << "Error in file opening!" << endl;   
@@ -36,7 +36,7 @@ void add_achievement(string player_name, int score)
 	
 	// write the achievements to player
     
-    ofstream MyFile("achievements.txt", ios::app);
+    ofstream MyFile("achievements.txt");
 	
      MyFile <<result;
      MyFile.close(); 
