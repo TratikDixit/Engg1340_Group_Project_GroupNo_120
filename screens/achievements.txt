@@ -1,9 +1,10 @@
 
-High Scores
+***High Scores***
 
+***Hall Of Fame***
 
-Player Name                   Player Moves Made
+Player Name                   
 
-Anonymous                        567
+Anonymous                        
 
-Lone_Ranger                      921
+Lone_Ranger                      
