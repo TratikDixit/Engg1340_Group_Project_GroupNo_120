@@ -21,7 +21,7 @@ void print_achievement_file()
 		cout << "Error in file opening!" << endl;   
   		exit(1);                                // precautionary in case the file cannot be opened
        }
-        while (getline(fin,x)) 
+        while (fin>>x) 
 	{
  		cout<<x<<endl;
  	}
@@ -32,11 +32,12 @@ void print_achievement_file()
 
 void add_achievement(string player_name, int score)
 {
-  string result = player_name + "\t"+to_string(score) +"\n" ;
+  string result = player_name + +"\n" ;
 	
 	// write the achievements to player
     
     ofstream MyFile("achievements.txt", ios::app);
+	
      MyFile <<result;
      MyFile.close(); 
      return;
