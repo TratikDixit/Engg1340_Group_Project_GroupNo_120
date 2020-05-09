@@ -23,17 +23,22 @@ void game_controller::Play_Game()
              // first instructions to the game 
                print_instruction();
         
-               MapController M;         
-               M.console();
+              
          
              // once game is over
               string player_name = "";
               int level_unlocked = 0 ;
-          
-             // will put a function here when to incorporate more levels
+
+              cout<<"Enter the player name ";
+              cin >> player_name;
+
+
+               MapController M;         
+               M.console();
+              // will put a function here when to incorporate more levels
         
-             //update the records 
-           add_achievement(player_name, level_unlocked);
+              //update the records 
+              add_achievement(player_name, level_unlocked);
            
         }
         else if(choice == 2 )
