@@ -77,6 +77,7 @@ It is very easy to build and compile our game. One can use different methods sta
 We have included a shell script in our game folder which the users can execute in order to play the game. The shell script automatically builds and executes the game. 
 
 ```bash
+chmod u+x play.sh
 ./play.sh
 ```
 
