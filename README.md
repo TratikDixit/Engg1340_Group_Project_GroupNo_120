@@ -65,10 +65,6 @@ Proper Indentation and naming style has been followed.
 ### In-code documentation
 In-code documentation has been done
 
-
-### Any non-standard C/C++ libraries, if any, that are used in your work, and what features/functions in your game are supported by these libraries.
-No non standard libraries are used.
-
 ## Compilation and execution instructions
 
 It is very easy to build and compile our game. One can use different methods stated below to do so.
@@ -89,8 +85,15 @@ cd controllers
 make game_controller
 ./game_controller
 ```
- 
- Your programs including Makefile and source files (.h / .cpp / .c)
+
+### Manual Compilation (Not Recommended) 
+Users can also manually compile the game files by running the commands below. This is not recommended as the files might change in future versions of the game. 
+
+```bash
+cd controllers
+g++ -o play game_controller.cpp MapController.cpp Chest.cpp Enemy.cpp Character_UI.cpp player_info.cpp
+./play
+```
  
  ## Gameplay Video
  
