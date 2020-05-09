@@ -15,15 +15,15 @@ void print_instruction()
     
         "# represent the barriers\n"
         
-        "Keys for movement: "
+        "Keys for movement: \n"
         
-        "d to move right, "
+        "d to move right, \n"
         
-        "w to move up, "
+        "w to move up, \n"
         
-        "s to move down, "
+        "s to move down, \n"
         
-        "a to move left, "
+        "a to move left, \n"
         
         "Your job is to find the V that allows you to exit the maze\n"
         
