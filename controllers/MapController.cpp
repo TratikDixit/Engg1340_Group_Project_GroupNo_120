@@ -309,22 +309,22 @@ void MapController::Update_Map(Player& player, bool &game_over) {
             // Generate a random number for random events
             int checker = rand()%101;          
             
-            if (checker < 20) {
+            if (checker < 10) {
                
-               // Spider bite with 20% chance
-               cout<<"You were bit by a spider (-25HP)! ";
+               // Spider bite with 10% chance
+               cout<<"You were bit by a spider (-20HP)! ";
                player.HP = (player.HP > 20) ? player.HP-20 : 0;
             } 
-            else if (checker < 25) {
+            else if (checker < 13) {
                
-               // Boulder fall with 5% chance
+               // Boulder fall with 3% chance
                cout<<"A boulder fell on you (-50HP, -100AP)! ";
                player.HP = (player.HP > 50) ? player.HP-50 : 0; 
                player.AP = (player.AP > 100) ? player.AP-100 : 0;
             } 
-            else if (checker < 28) {
+            else if (checker < 14) {
                
-               // Cursed door with 3% chance 
+               // Cursed door with 1% chance 
                cout<<"This door was cursed by Cerberus (-95HP, -500AP, -200 ATTACK)! ";
                player.HP = (player.HP > 95) ? player.HP-95 : 0; 
                player.AP = (player.AP > 500) ? player.AP-500 : 0;
