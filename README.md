@@ -1,7 +1,7 @@
 
 # Eye of Zodiac  ~  An ASCII Rougelike
 This is a text based adventure game. Incorporates  the elements of classic roguelike games.
-Players have to navigate through a maze-like dungeon while fighting enemies in order to escape. Random items such as Weapons, Armour and Health Potions can be found at different locations in the map assisting the player in their adventure!
+Players have to navigate through a maze-like dungeon while fighting enemies in order to escape. Random items such as Weapons, Armour and Health Potions can be found at different locations in the map assisting the player in their adventure! By including a robust combat system, we have tried to make the game as strategic and skill-based as possible. 
 
 ## Developers
 ### Tratik Dixit
