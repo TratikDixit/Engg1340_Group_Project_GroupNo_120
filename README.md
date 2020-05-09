@@ -65,10 +65,6 @@ Proper Indentation and naming style has been followed.
 ### In-code documentation
 In-code documentation has been done
 
-
-### Any non-standard C/C++ libraries, if any, that are used in your work, and what features/functions in your game are supported by these libraries.
-No non standard libraries are used.
-
 ## Compilation and execution instructions
 
 It is very easy to build and compile our game. One can use different methods stated below to do so.
