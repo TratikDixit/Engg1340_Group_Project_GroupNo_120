@@ -64,7 +64,7 @@ void MapController::LoadEnemies() {
 
    // The number of enemies to be loaded 
    
-   num_enemies = 25; 
+   num_enemies = 32; 
    
    // Initialize dynamic array of enemies
   
