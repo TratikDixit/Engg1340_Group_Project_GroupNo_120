@@ -51,7 +51,7 @@ All the enemies are generated randomly. The enemies have mild intelligence, i.e 
 	```
 ### File input/output (e.g., for loading/saving game status)
 
-There are different files to store the previous achievements, levels are stored as maps, and  instructions are also saved in files. 
+There are different files to store the previous players (Hall of Fame), levels are stored as maps (.txt files), and  instructions are also saved in files. 
 
 ### Program codes in multiple files
 For better structure, our code base has been split into 3 different directories 
