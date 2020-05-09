@@ -89,6 +89,15 @@ cd controllers
 make game_controller
 ./game_controller
 ```
+
+### Manual Compilation (Not Recommended) 
+Users can also manually compile the game files by running the commands below. This is not recommended as the files might change in future versions of the game. 
+
+```bash
+cd controllers
+g++ -o play game_controller.cpp MapController.cpp Chest.cpp Enemy.cpp Character_UI.cpp player_info.cpp
+./play
+```
  
  Your programs including Makefile and source files (.h / .cpp / .c)
  
