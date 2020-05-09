@@ -5,6 +5,7 @@
 #include "Character_UI.h"
 #include "player_info.h"
 #include <iostream>
+#include <ctype.h>
 
 Player::Player() {
     // Initialize the attack damage 

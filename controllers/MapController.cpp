@@ -272,7 +272,7 @@ void MapController::Update_Map(Player& player, bool &game_over) {
          cout<<"You got a "<<item<<" (+"<<item.length()*5<<")!"<<endl;
          char ch; 
          
-         cout<<"Press X to equip item... ";
+         cout<<"Equip item (x) or Discard item (c): ";
          cin>>ch;
          
          if (ch == 'x') {
@@ -377,7 +377,7 @@ void MapController::console() {
 
    if (isDead) {
       cout<<"You are dead!\n";
-      cout<<"The cycle ends here. You must be better!";
+      cout<<"The cycle ends here. You must be better!\n";
    } else {
       cout<<"After ten years of suffering, ten years of endless nightmares, it finally comes to an end. You are free again!\n";
    }

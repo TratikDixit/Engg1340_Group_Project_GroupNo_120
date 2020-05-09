@@ -97,8 +97,6 @@ bool Character::UpdatePosition(char move, vector<string> &grid)
             // Check if the players wants to interact with the object 
             if (cell == '=' || cell == '|') {
                 cout<<"Open door? ";
-            } else if (cell == '@') {
-                cout<<"Enemy! Attack? ";
             } else if (cell == 'C') {
                 cout<<"You found a chest! Open? ";
             } else if (cell == 'A') {
