@@ -6,7 +6,7 @@ using namespace std;
 int display_screen()
 {
   // Clear the initial screen
-  system("cls");
+  system("clear");
  string intro = "\n\n"   
 "                                                 ,--,  ,.-.  \n"
 "               ,                    |,       '-,-`,'-.' | ._ \n"
